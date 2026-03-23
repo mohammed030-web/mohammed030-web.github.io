@@ -3,64 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.V. Overvecht De Dreef | Officiële Clubsite</title>
+    <title>S.V. Overvecht De Dreef | JO14-2</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <div class="header-content">
+        <div class="header-inner">
             <img src="logo.png" alt="S.V. Overvecht De Dreef Logo" class="club-logo">
-            <div class="titles">
-                <p class="subtitle">S.V. OVERVECHT</p>
-                <h1 class="main-title">DE DREEF</h1>
+            <div class="header-text">
+                <h1>S.V. Overvecht <span>De Dreef</span></h1>
+                <p>Officiële Team-site JO14-2</p>
             </div>
         </div>
         <nav>
             <a href="#">Home</a>
-            <a href="#">Teams</a>
-            <a href="#">Programma</a>
-            <a href="#">Clubinfo</a>
+            <a href="#programma">Programma</a>
+            <a href="#stand">Stand</a>
             <a href="#">Contact</a>
         </nav>
     </header>
 
     <main>
         <section class="hero">
-            <div class="hero-overlay">
-                <h2>Rood & Zwart: De kleuren van de Dreef</h2>
-                <p>Welkom op de officiële website van onze club. Opgericht in 2011.</p>
-                <a href="#" class="btn-primary">Word lid!</a>
-            </div>
+            <h2>Klaar voor de aftrap?</h2>
+            <p>Volg hier alle verrichtingen van de JO14-2 van de mooiste club uit Utrecht.</p>
         </section>
 
-        <section class="content-wrapper">
-            <div class="info-card latest-result">
-                <h3>Laatste Uitslag</h3>
-                <div class="match-score">
-                    <span class="team-name">S.V. De Dreef 1</span>
-                    <span class="score">3 - 1</span>
-                    <span class="team-name">FC Tegenstander</span>
+        <section class="container" id="programma">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Programma & Uitslagen</h3>
                 </div>
-            </div>
-            
-            <div class="info-card next-match">
-                <h3>Volgende Wedstrijd</h3>
-                <div class="match-info">
-                    <p class="match-date">Zaterdag 14:30 uur</p>
-                    <p class="match-teams">VV Code - S.V. De Dreef 1</p>
-                    <p class="match-location">Sportpark De Dreef</p>
+                <div class="widget-wrapper">
+                    <iframe 
+                        src="https://www.voetbal.nl/team/BBJC51T/JO14-2/programma" 
+                        class="voetbal-iframe"
+                        scrolling="yes">
+                    </iframe>
                 </div>
+                <p class="caption">Live data via Voetbal.nl</p>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-content">
-            <p>&copy; 2026 S.V. Overvecht De Dreef - Utrecht</p>
-            <p class="created-by">Created with GitHub Pages</p>
-        </div>
+        <p>&copy; 2026 S.V. Overvecht De Dreef | Utrecht</p>
+        <p class="small">Powered by GitHub Pages</p>
     </footer>
 
 </body>
