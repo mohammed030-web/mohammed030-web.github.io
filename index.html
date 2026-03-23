@@ -4,33 +4,234 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S.V. Overvecht De Dreef | JO14-2</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Kleuren van S.V. Overvecht De Dreef */
+        :root {
+            --dreef-donker: #0d061a; /* Diep donkerblauw */
+            --dreef-rood: #b31a0c;    /* Rood */
+            --wit: #ffffff;
+            --achtergrond: #f4f4f4;
+            --tekst: #333333;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--achtergrond);
+            color: var(--tekst);
+            line-height: 1.6;
+        }
+
+        /* --- Header & Het Logo (De Fix) --- */
+        header {
+            background-color: var(--dreef-donker);
+            color: var(--wit);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid var(--dreef-rood); /* Rode accentlijn */
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .club-logo {
+            width: 70px; /* HIER IS DE FIX VOOR HET GIGANTISCHE LOGO */
+            height: auto;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+        }
+
+        .header-titles h1 {
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+        }
+
+        .header-titles h1 span {
+            color: var(--dreef-rood);
+        }
+
+        .header-titles p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* --- Hero Sectie (Rood) --- */
+        .hero {
+            background-color: var(--dreef-rood);
+            color: var(--wit);
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px; /* Mooie ronde onderkant */
+            margin-bottom: 30px;
+        }
+
+        .hero h2 {
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+
+        .btn-voetbal {
+            display: inline-block;
+            background-color: var(--wit);
+            color: var(--dreef-rood);
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            margin-top: 15px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+
+        .btn-voetbal:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Kaarten & Uitslagen --- */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .card {
+            background: var(--wit);
+            border-radius: 20px; /* Ronde hoeken overal */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .card-header {
+            background-color: var(--dreef-donker);
+            color: var(--wit);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-header h3 {
+            margin: 0;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* De Uitslag Display */
+        .match-display {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 30px 10px;
+        }
+
+        .team {
+            text-align: center;
+            width: 35%;
+        }
+
+        .team p {
+            font-weight: bold;
+            margin: 10px 0 0;
+            font-size: 0.95rem;
+        }
+
+        .team-logo-small {
+            width: 60px; /* Klein logo in de uitslag */
+            height: auto;
+        }
+
+        /* Placeholder voor tegenstander logo */
+        .vs-logo {
+            width: 60px;
+            height: 60px;
+            background: #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-weight: bold;
+            color: #777;
+        }
+
+        .score-box {
+            background: var(--dreef-donker);
+            color: var(--wit);
+            padding: 10px 20px;
+            border-radius: 12px;
+        }
+
+        .score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .match-meta {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            padding-bottom: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        /* --- Mobiel --- */
+        @media (max-width: 500px) {
+            .header-content {
+                flex-direction: column;
+            }
+            .club-logo {
+                width: 60px;
+            }
+            .header-titles h1 {
+                font-size: 1.4rem;
+            }
+            .score {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <header>
-        <div class="header-inner">
+        <div class="header-content">
             <img src="logo.png" alt="S.V. Overvecht De Dreef Logo" class="club-logo">
-            <div class="header-text">
+            <div class="header-titles">
                 <h1>S.V. Overvecht <span>De Dreef</span></h1>
-                <p>Officiële Team-site JO14-2</p>
+                <p>Officiële Teamsite JO14-2</p>
             </div>
         </div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#programma">Programma</a>
-            <a href="#stand">Stand</a>
-            <a href="#">Contact</a>
-        </nav>
     </header>
 
     <main>
         <section class="hero">
-            <h2>Klaar voor de aftrap?</h2>
-            <p>Volg hier alle verrichtingen van de JO14-2 van S.V. Overvecht De Dreef.</p>
+            <h2>Volg onze strijd!</h2>
+            <p>Welkom op de officiële website van de JO14-2. Rood & Zwart!</p>
             <a href="https://www.voetbal.nl/team/BBJC51T/JO14-2/programma" target="_blank" class="btn-voetbal">
-                Bekijk Programma op Voetbal.nl
+                Live Programma op Voetbal.nl
             </a>
         </section>
 
@@ -39,27 +240,31 @@
                 <div class="card-header">
                     <h3>Laatste Resultaat</h3>
                 </div>
+                
                 <div class="match-display">
-                    <div class="team">
-                        <img src="logo.png" alt="Dreef" class="small-logo">
+                    <div class="team thuis">
+                        <img src="logo.png" alt="Dreef Logo" class="team-logo-small">
                         <p>S.V. De Dreef</p>
                     </div>
-                    <div class="result-box">
+                    
+                    <div class="score-box">
                         <span class="score">3 - 1</span>
                     </div>
-                    <div class="team">
-                        <div class="placeholder-logo">VS</div>
-                        <p>Tegenstander</p>
+                    
+                    <div class="team uit">
+                        <div class="vs-logo">VS</div>
+                        <p>FC Code</p>
                     </div>
                 </div>
-                <p class="match-date">Zaterdag 21 maart 2026</p>
+                
+                <p class="match-meta">Zaterdag 21 maart 2026 - Thuiswedstrijd</p>
             </div>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2026 S.V. Overvecht De Dreef | Utrecht</p>
-        <p class="small">Powered by GitHub Pages</p>
+        <p>Created by GitHub Pages</p>
     </footer>
 
 </body>
