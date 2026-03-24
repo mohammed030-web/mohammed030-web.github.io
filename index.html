@@ -4,64 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S.V. Overvecht De Dreef | JO14-2</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        /* Basis instellingen */
         :root {
             --dreef-donker: #0d061a;
             --dreef-rood: #b31a0c;
             --wit: #ffffff;
-            --achtergrond: #f4f4f4;
-            --geel: #ffcc00;
+            --achtergrond: #f4f4f4; /* De grijze achtergrond */
         }
 
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
-            background-color: var(--achtergrond);
+            padding: 0;
+            background-color: var(--achtergrond) !important;
             color: #333;
         }
 
-        /* --- MELDINGEN BALK --- */
-        .alert-bar {
-            background-color: var(--geel);
-            color: #000;
-            text-align: center;
-            padding: 12px;
-            font-weight: bold;
-            display: none; /* Verander naar 'block' als er een afgelasting is */
-            font-size: 0.9rem;
-        }
-
+        /* Header met logo */
         header {
             background-color: var(--dreef-donker);
             color: var(--wit);
-            padding: 30px 0;
+            padding: 25px 0;
             text-align: center;
             border-bottom: 6px solid var(--dreef-rood);
         }
 
-        .club-logo {
-            width: 80px;
+        .logo-img {
+            width: 75px;
             height: auto;
             margin-bottom: 10px;
         }
 
-        h1 { font-family: 'Oswald', sans-serif; margin: 0; text-transform: uppercase; font-size: 2rem; }
-        h1 span { color: var(--dreef-rood); }
+        header h1 {
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            text-transform: uppercase;
+            font-size: 1.8rem;
+        }
 
-        .container {
+        header h1 span {
+            color: var(--dreef-rood);
+        }
+
+        /* Container voor de kaarten */
+        .main-content {
             max-width: 500px;
             margin: 20px auto;
             padding: 0 15px;
         }
 
+        /* Kaarten styling */
         .card {
             background: var(--wit);
             border-radius: 25px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             margin-bottom: 25px;
+            overflow: hidden;
+            display: block;
         }
 
         .card-header {
@@ -71,10 +74,149 @@
             text-align: center;
         }
 
-        .card-header h3 { margin: 0; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+        .card-header h3 {
+            margin: 0;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
 
-        /* Uitslag Styling uit je screenshot */
-        .match-display { display: flex; justify-content: space-around; align-items: center; padding: 30px 10px; }
-        .score-box { background: var(--dreef-donker); color: var(--wit); padding: 15px 25px; border-radius: 15px; font-size: 2.5rem; font-family: 'Oswald'; font-weight: bold; }
-        .team { text-align: center; width: 35%; font-weight: bold; font-size: 0.85rem; }
-        .vs-circle { width: 50px; height: 50px; background: #e0e0e0; border-radius: 5
+        /* Uitslag uit screenshot */
+        .match-box {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 25px 10px;
+        }
+
+        .score-display {
+            background: var(--dreef-donker);
+            color: var(--wit);
+            padding: 12px 20px;
+            border-radius: 15px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.2rem;
+            font-weight: bold;
+        }
+
+        .team-info {
+            text-align: center;
+            width: 35%;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .vs-circle {
+            width: 50px;
+            height: 50px;
+            background: #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #888;
+        }
+
+        /* Trainingstijden */
+        .training-body {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .training-line {
+            margin: 10px 0;
+            font-size: 1.05rem;
+        }
+
+        /* Topscorers */
+        .list-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .goal-tag {
+            background: var(--dreef-rood);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="Logo" class="logo-img">
+        <h1>S.V. OVERVECHT <span>DE DREEF</span></h1>
+        <p>Officiële Teamsite JO14-2</p>
+    </header>
+
+    <div class="main-content">
+
+        <div class="card">
+            <div class="card-header">
+                <h3>LAATSTE RESULTAAT</h3>
+            </div>
+            <div class="match-box">
+                <div class="team-info">
+                    <img src="logo.png" alt="Dreef" style="width: 35px; margin-bottom: 5px;"><br>
+                    SV Overvecht/De Dreef JO14-2
+                </div>
+                <div class="score-display">5 - 3</div>
+                <div class="team-info">
+                    <div class="vs-circle">?</div>
+                    Zwaluwen Utrecht '11 JO14-1
+                </div>
+            </div>
+            <p style="text-align:center; font-size: 0.8rem; color: #888; padding-bottom: 15px; margin: 0;">
+                Zaterdag 14 Maart - Uitwedstrijd
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>TOPSCORERS</h3>
+            </div>
+            <div class="list-row">
+                <span>1. Speler Naam</span>
+                <span class="goal-tag">8 Goals</span>
+            </div>
+            <div class="list-row">
+                <span>2. Speler Naam</span>
+                <span class="goal-tag">5 Goals</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>TRAININGSTIJDEN</h3>
+            </div>
+            <div class="training-body">
+                <p class="training-line"><strong>Dinsdag:</strong> 17:15 - 18:15 (Veld 1)</p>
+                <p class="training-line"><strong>Donderdag:</strong> 17:15 - 18:15 (Veld 1)</p>
+                <div style="height: 1px; background: #eee; margin: 15px 0;"></div>
+                <p style="font-size: 0.85rem; color: #777;">Verzamelen: 15 minuten voor aanvang</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 S.V. Overvecht De Dreef | Utrecht</p>
+        <p>Created by Mohammed Kaddouri</p>
+    </footer>
+
+</body>
+</html>
