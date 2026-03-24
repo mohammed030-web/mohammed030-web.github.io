@@ -3,92 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.V. Overvecht De Dreef | JO14-2</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+    <title>S.V. Overvecht De Dreef JO14-2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --dreef-donker: #0d061a;
-            --dreef-rood: #b31a0c;
-            --wit: #ffffff;
-            --achtergrond: #f0f2f5; /* Lichtgrijs, past bij elke clubsite */
-            --tekst: #333333;
-        }
+        body { font-family: 'Roboto', sans-serif; background: #f0f2f5; margin: 0; color: #333; }
+        header { background: #0d061a; color: white; text-align: center; padding: 20px; border-bottom: 5px solid #b31a0c; }
+        .logo { width: 80px; margin-bottom: 10px; }
+        h1 { font-family: 'Oswald', sans-serif; margin: 0; text-transform: uppercase; font-size: 1.8rem; }
+        h1 span { color: #b31a0c; }
+        .container { max-width: 500px; margin: 20px auto; padding: 0 15px; }
+        .card { background: white; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px; overflow: hidden; }
+        .card-header { background: #0d061a; color: white; padding: 12px; text-align: center; font-family: 'Oswald'; text-transform: uppercase; }
+        .match { display: flex; justify-content: space-around; align-items: center; padding: 20px; }
+        .score { background: #0d061a; color: white; padding: 10px 20px; border-radius: 12px; font-family: 'Oswald'; font-size: 2rem; }
+        .team { text-align: center; width: 35%; font-weight: bold; font-size: 0.85rem; }
+        .vs { width: 40px; height: 40px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 5px; color: #999; }
+        .info { padding: 20px; text-align: center; }
+        .line { border-bottom: 1px solid #eee; padding: 10px; display: flex; justify-content: space-between; }
+        footer { text-align: center; padding: 20px; color: #888; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            background-color: var(--achtergrond);
-            color: var(--tekst);
-            line-height: 1.6;
-        }
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>S.V. OVERVECHT <span>DE DREEF</span></h1>
+        <p>JO14-2 Teamsite</p>
+    </header>
 
-        /* --- HEADER --- */
-        header {
-            background-color: var(--dreef-donker);
-            color: var(--wit);
-            padding: 20px 0;
-            text-align: center;
-            border-bottom: 5px solid var(--dreef-rood);
-        }
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Laatste Resultaat</div>
+            <div class="match">
+                <div class="team">De Dreef JO14-2</div>
+                <div class="score">5 - 3</div>
+                <div class="team">
+                    <div class="vs">?</div>
+                    Zwaluwen Ut. JO14-1
+                </div>
+            </div>
+            <p style="text-align:center; color:#999; font-size:0.8rem; margin-bottom:15px;">Zaterdag 14 Maart - Uit</p>
+        </div>
 
-        .logo-img {
-            width: 80px; /* Precies goed formaat */
-            height: auto;
-            margin-bottom: 10px;
-        }
+        <div class="card">
+            <div class="card-header">Topscorers</div>
+            <div class="line"><span>1. Mohammed Kaddouri</span><span style="color:#b31a0c; font-weight:bold;">12 Goals</span></div>
+            <div class="line"><span>2. Speler Naam</span><span style="color:#b31a0c; font-weight:bold;">8 Goals</span></div>
+        </div>
 
-        header h1 {
-            font-family: 'Oswald', sans-serif;
-            margin: 0;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        <div class="card">
+            <div class="card-header">Trainingen</div>
+            <div class="info">
+                <p><strong>Dinsdag:</strong> 17:15 - 18:15 (Veld 1)</p>
+                <p><strong>Donderdag:</strong> 17:15 - 18:15 (Veld 1)</p>
+                <p style="font-size:0.8rem; color:#999;">Verzamelen: 15 min. voor aanvang</p>
+            </div>
+        </div>
+    </div>
 
-        header h1 span { color: var(--dreef-rood); }
+    <footer>
+        &copy; 2026 S.V. Overvecht De Dreef | Utrecht<br>
+        Created by Mohammed Kaddouri
+    </footer>
 
-        /* --- CONTAINER --- */
-        .wrapper {
-            max-width: 600px; /* Niet te breed, niet te smal */
-            margin: 30px auto;
-            padding: 0 15px;
-        }
-
-        /* --- KAARTEN (Zachte ronde hoeken) --- */
-        .card {
-            background: var(--wit);
-            border-radius: 20px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            margin-bottom: 25px;
-            overflow: hidden;
-            border: 1px solid #e0e0e0;
-        }
-
-        .card-header {
-            background: var(--dreef-donker);
-            color: var(--wit);
-            padding: 12px;
-            text-align: center;
-        }
-
-        .card-header h2 {
-            margin: 0;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-        }
-
-        /* --- MATCH SECTIE --- */
-        .match-grid {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 25px 10px;
-        }
-
-        .score-box {
-            background: var(--dreef-donker);
-            color: var(--wit);
-            padding: 10px 20px;
-            border-radius: 12px;
+</body>
+</html>
