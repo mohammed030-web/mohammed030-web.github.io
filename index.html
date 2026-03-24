@@ -4,218 +4,253 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S.V. Overvecht De Dreef | JO14-2</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Roboto:wght@400;900&display=swap" rel="stylesheet">
 
     <style>
-        /* Basis instellingen */
         :root {
             --dreef-donker: #0d061a;
             --dreef-rood: #b31a0c;
+            --dreef-rood-fel: #e62e1c;
             --wit: #ffffff;
-            --achtergrond: #f4f4f4; /* De grijze achtergrond */
+            --achtergrond: #1a1a1d; /* Donkere, stoere achtergrond */
         }
 
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: var(--achtergrond) !important;
-            color: #333;
-        }
-
-        /* Header met logo */
-        header {
-            background-color: var(--dreef-donker);
+            background-color: var(--achtergrond);
             color: var(--wit);
-            padding: 25px 0;
-            text-align: center;
-            border-bottom: 6px solid var(--dreef-rood);
         }
 
-        .logo-img {
-            width: 75px;
+        /* --- STOERE HEADER --- */
+        header {
+            background: linear-gradient(180deg, var(--dreef-donker) 0%, #000 100%);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 8px solid var(--dreef-rood);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .logo-main {
+            width: 120px; /* Logo is weer prominent aanwezig */
             height: auto;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 15px rgba(179, 26, 12, 0.4));
         }
 
         header h1 {
             font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
             margin: 0;
             text-transform: uppercase;
-            font-size: 1.8rem;
+            letter-spacing: -1px;
+            line-height: 0.9;
         }
 
-        header h1 span {
-            color: var(--dreef-rood);
+        header h1 span { color: var(--dreef-rood); }
+
+        /* --- LAYOUT --- */
+        .wrapper {
+            max-width: 1000px;
+            margin: -40px auto 50px;
+            padding: 0 20px;
         }
 
-        /* Container voor de kaarten */
-        .main-content {
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-
-        /* Kaarten styling */
         .card {
             background: var(--wit);
-            border-radius: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 25px;
+            color: #000;
+            border-radius: 30px; /* Extra ronde hoeken zoals gevraagd */
+            margin-bottom: 40px;
             overflow: hidden;
-            display: block;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: none;
         }
 
         .card-header {
-            background: var(--dreef-donker);
+            background: var(--dreef-rood);
             color: var(--wit);
-            padding: 15px;
+            padding: 20px;
             text-align: center;
         }
 
-        .card-header h3 {
+        .card-header h2 {
             margin: 0;
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
         }
 
-        /* Uitslag uit screenshot */
-        .match-box {
+        /* --- MATCH DISPLAY (BIG & BOLD) --- */
+        .match-container {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
-            padding: 25px 10px;
+            padding: 50px 30px;
+            background: linear-gradient(to bottom, #fff, #f9f9f9);
         }
 
-        .score-display {
-            background: var(--dreef-donker);
-            color: var(--wit);
-            padding: 12px 20px;
-            border-radius: 15px;
-            font-family: 'Oswald', sans-serif;
-            font-size: 2.2rem;
-            font-weight: bold;
-        }
-
-        .team-info {
-            text-align: center;
+        .team-side {
             width: 35%;
-            font-weight: bold;
-            font-size: 0.85rem;
+            text-align: center;
         }
 
-        .vs-circle {
-            width: 50px;
-            height: 50px;
+        .team-side p {
+            font-weight: 900;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-top: 15px;
+        }
+
+        .vs-badge {
+            width: 70px;
+            height: 70px;
             background: #eee;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 10px;
-            color: #888;
+            font-weight: 900;
+            color: #bbb;
         }
 
-        /* Trainingstijden */
-        .training-body {
-            padding: 25px;
-            text-align: center;
+        .big-score {
+            background: var(--dreef-donker);
+            color: var(--wit);
+            font-family: 'Oswald', sans-serif;
+            font-size: 5rem;
+            padding: 10px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border-bottom: 5px solid var(--dreef-rood);
         }
 
-        .training-line {
-            margin: 10px 0;
-            font-size: 1.05rem;
-        }
-
-        /* Topscorers */
+        /* --- TOPSCORERS LIJST --- */
         .list-row {
             display: flex;
             justify-content: space-between;
-            padding: 12px 20px;
-            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid #eee;
+            font-size: 1.3rem;
         }
 
-        .goal-tag {
-            background: var(--dreef-rood);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            font-weight: bold;
+        .list-row:nth-child(even) { background: #fcfcfc; }
+
+        .name { font-weight: 700; text-transform: uppercase; }
+        .goal-badge {
+            background: var(--dreef-donker);
+            color: var(--wit);
+            padding: 5px 20px;
+            border-radius: 50px;
+            font-weight: 900;
         }
 
+        /* --- TRAININGEN --- */
+        .training-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .training-box {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 20px;
+            border-bottom: 4px solid var(--dreef-rood);
+        }
+
+        .training-box h4 { margin: 0; color: var(--dreef-rood); text-transform: uppercase; }
+
+        /* --- FOOTER --- */
         footer {
             text-align: center;
-            padding: 30px;
-            color: #888;
-            font-size: 0.8rem;
+            padding: 60px 20px;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .match-container { flex-direction: column; gap: 30px; }
+            .team-side { width: 100%; }
+            .training-grid { grid-template-columns: 1fr; }
+            .big-score { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo.png" alt="Logo" class="logo-img">
-        <h1>S.V. OVERVECHT <span>DE DREEF</span></h1>
-        <p>Officiële Teamsite JO14-2</p>
+        <img src="logo.png" alt="S.V. Overvecht De Dreef" class="logo-main">
+        <h1>S.V. OVERVECHT<br><span>DE DREEF</span></h1>
     </header>
 
-    <div class="main-content">
+    <div class="wrapper">
 
         <div class="card">
             <div class="card-header">
-                <h3>LAATSTE RESULTAAT</h3>
+                <h2>Laatste Resultaat</h2>
             </div>
-            <div class="match-box">
-                <div class="team-info">
-                    <img src="logo.png" alt="Dreef" style="width: 35px; margin-bottom: 5px;"><br>
-                    SV Overvecht/De Dreef JO14-2
+            <div class="match-container">
+                <div class="team-side">
+                    <img src="logo.png" style="width: 70px;" alt="Dreef">
+                    <p>De Dreef JO14-2</p>
                 </div>
-                <div class="score-display">5 - 3</div>
-                <div class="team-info">
-                    <div class="vs-circle">?</div>
-                    Zwaluwen Utrecht '11 JO14-1
+                
+                <div class="big-score">5 - 3</div>
+
+                <div class="team-side">
+                    <div style="display: flex; justify-content: center;"><div class="vs-badge">?</div></div>
+                    <p>Zwaluwen Ut. JO14-1</p>
                 </div>
             </div>
-            <p style="text-align:center; font-size: 0.8rem; color: #888; padding-bottom: 15px; margin: 0;">
+            <div style="text-align: center; padding-bottom: 20px; font-weight: bold; color: #888; text-transform: uppercase; letter-spacing: 1px;">
                 Zaterdag 14 Maart - Uitwedstrijd
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Topscorers</h2>
+            </div>
+            <div class="list-row">
+                <span class="name">1. Mo Kaddouri</span>
+                <span class="goal-badge">12 GOALS</span>
+            </div>
+            <div class="list-row">
+                <span class="name">2. Speler Naam</span>
+                <span class="goal-badge">8 GOALS</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Trainingen</h2>
+            </div>
+            <div class="training-grid">
+                <div class="training-box">
+                    <h4>Dinsdag</h4>
+                    <p>17:15 - 18:15<br><strong>Veld 1</strong></p>
+                </div>
+                <div class="training-box">
+                    <h4>Donderdag</h4>
+                    <p>17:15 - 18:15<br><strong>Veld 1</strong></p>
+                </div>
+            </div>
+            <p style="text-align: center; padding-bottom: 20px; font-weight: bold; color: var(--dreef-rood);">
+                VERZAMELEN: 15 MINUTEN VOOR AANVANG
             </p>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <h3>TOPSCORERS</h3>
-            </div>
-            <div class="list-row">
-                <span>1. Speler Naam</span>
-                <span class="goal-tag">8 Goals</span>
-            </div>
-            <div class="list-row">
-                <span>2. Speler Naam</span>
-                <span class="goal-tag">5 Goals</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <h3>TRAININGSTIJDEN</h3>
-            </div>
-            <div class="training-body">
-                <p class="training-line"><strong>Dinsdag:</strong> 17:15 - 18:15 (Veld 1)</p>
-                <p class="training-line"><strong>Donderdag:</strong> 17:15 - 18:15 (Veld 1)</p>
-                <div style="height: 1px; background: #eee; margin: 15px 0;"></div>
-                <p style="font-size: 0.85rem; color: #777;">Verzamelen: 15 minuten voor aanvang</p>
-            </div>
         </div>
 
     </div>
 
     <footer>
         <p>&copy; 2026 S.V. Overvecht De Dreef | Utrecht</p>
-        <p>Created by Mohammed Kaddouri</p>
+        <p>CREATED BY MOHAMMED KADDOURI</p>
     </footer>
 
 </body>
