@@ -78,16 +78,26 @@
         .stand-table th { background: #f8f9fa; padding: 12px; text-align: left; font-weight: 900; color: var(--dreef-blauw); border-bottom: 2px solid #eee; }
         .stand-table td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; }
         .stand-table tr.highlight { background-color: #fff0f0; font-weight: 900; }
-        .klasse-label { display: block; font-size: 0.75rem; color: #bbb; margin-top: 5px; font-family: 'Roboto'; font-weight: 400; }
+
+        /* OEFENINGEN LIJST */
+        .exercise-list { list-style: none; padding: 0; margin: 0; }
+        .exercise-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 25px; 
+            border-bottom: 1px solid #eee;
+            font-weight: 700;
+        }
+        .exercise-item:last-child { border-bottom: none; }
+        .exercise-name { display: flex; align-items: center; gap: 15px; }
+        .exercise-count { background: var(--dreef-rood); color: white; padding: 5px 15px; border-radius: 20px; font-family: 'Oswald'; font-size: 0.9rem; }
 
         /* WEDSTRIJD STYLES */
         .match-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid #f0f0f0; }
         .m-date { font-weight: 900; color: var(--dreef-rood); width: 110px; font-size: 0.8rem; }
         .m-teams { flex: 1; text-align: center; font-weight: 700; font-size: 0.85rem; padding: 0 10px; }
         .m-time { font-family: 'Oswald'; background: var(--dreef-blauw); color: white; padding: 5px 12px; border-radius: 6px; min-width: 50px; text-align: center; }
-
-        /* TOPSCORERS */
-        .score-row { display: flex; justify-content: space-between; padding: 15px 30px; border-bottom: 1px solid #eee; font-weight: 900; }
 
         /* TRAINING STYLES */
         .training-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
@@ -98,11 +108,6 @@
         .v-button-container { text-align: center; padding: 20px; background: #f8f9fa; }
         .v-button { display: inline-block; background: var(--dreef-blauw); color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: 900; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s ease; }
         .v-button:hover { background: var(--dreef-rood); transform: translateY(-2px); }
-
-        /* NIEUWSBRIEF ARTIKEL */
-        .news-article { padding: 30px; border-bottom: 1px solid #eee; }
-        .news-title { font-family: 'Oswald'; font-size: 1.6rem; color: var(--dreef-blauw); margin-bottom: 10px; }
-        .news-text { line-height: 1.5; color: #555; }
 
         footer { text-align: center; padding: 40px; color: #aaa; font-size: 0.85rem; line-height: 1.6; }
 
@@ -142,10 +147,34 @@
 
                 <div class="card">
                     <div class="card-header">THUIS OEFENINGEN</div>
-                    <div style="padding: 25px; display: flex; align-items: center; gap: 20px;">
-                        <span style="font-size: 2rem;">💪🏻</span>
-                        <div style="font-weight: 700; font-size: 1rem; line-height: 1.4;">
-                            TRAINING: <span style="font-weight: 400; color: #555;"><br>20 Pushups, 15 Squats, 10 Burpees, 30s Plank, 20 Situps, 20 Mountain Climbers, 10 Jumping Squats</span>
+                    <div class="exercise-list">
+                        <div class="exercise-item">
+                            <span class="exercise-name"><span>👕</span> Pushups</span>
+                            <span class="exercise-count">20x</span>
+                        </div>
+                        <div class="exercise-item">
+                            <span class="exercise-name"><span>🦵</span> Squats</span>
+                            <span class="exercise-count">15x</span>
+                        </div>
+                        <div class="exercise-item">
+                            <span class="exercise-name"><span>🔥</span> Burpees</span>
+                            <span class="exercise-count">10x</span>
+                        </div>
+                        <div class="exercise-item">
+                            <span class="exercise-name"><span>⏳</span> Plank</span>
+                            <span class="exercise-count">30 SEC</span>
+                        </div>
+                        <div class="exercise-item">
+                            <span class="exercise-name"><span>💪</span> Situps</span>
+                            <span class="exercise-count">20x</span>
+                        </div>
+                        <div class="exercise-item">
+                            <span class="exercise-name"><span>🧗</span> Mountain Climbers</span>
+                            <span class="exercise-count">20x</span>
+                        </div>
+                        <div class="exercise-item">
+                            <span class="exercise-name"><span>🚀</span> Jumping Squats</span>
+                            <span class="exercise-count">10x</span>
                         </div>
                     </div>
                 </div>
@@ -154,49 +183,45 @@
                     <div class="card-header">Laatste Resultaat</div>
                     <div style="padding: 50px 20px; text-align: center;">
                         <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-                            <div style="width: 35%; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;">Zwaluwen Utrecht '11 JO14-1</div>
-                            <div style="background: var(--dreef-blauw); color: white; padding: 25px 35px; border-radius: 20px; font-family: 'Oswald'; font-size: 3.5rem; line-height:1;">3 - 5</div>
-                            <div style="width: 35%; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;">SV Overvecht/De Dreef JO14-2</div>
+                            <div style="width: 35%; font-weight: 900; font-size: 0.8rem; text-transform: uppercase;">Zwaluwen Utrecht '11</div>
+                            <div style="background: var(--dreef-blauw); color: white; padding: 20px 30px; border-radius: 20px; font-family: 'Oswald'; font-size: 3rem;">3 - 5</div>
+                            <div style="width: 35%; font-weight: 900; font-size: 0.8rem; text-transform: uppercase;">Overvecht De Dreef</div>
                         </div>
-                        <p style="margin-top: 30px; color: #888; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Zaterdag 14 Maart - Uitwedstrijd</p>
                     </div>
                 </div>
             </section>
 
             <section id="nieuwsbrief" class="page-section">
                 <div class="card">
-                    <div class="card-header">Nieuwsbrief</div>
-                    <div class="news-article">
-                        <h2 class="news-title">Welkom bij de Nieuwsbrief</h2>
-                        <div class="news-text">Hier kun je wekelijks updates, wedstrijdverslagen en ander nieuws toevoegen voor het team!</div>
+                    <div class="card-header">NIEUWSBRIEF</div>
+                    <div style="padding: 30px;">
+                        <h2 style="font-family:'Oswald'; color:var(--dreef-blauw);">Welkom bij de Nieuwsbrief</h2>
+                        <p style="color:#666; line-height:1.6;">Hier kun je updates plaatsen voor het hele team.</p>
                     </div>
                 </div>
             </section>
 
             <section id="wedstrijden" class="page-section">
                 <div class="card">
-                    <div class="card-header">
-                        Ranglijst
-                        <span class="klasse-label" style="color: rgba(255,255,255,0.6);">KNVB 2E KLASSE</span>
-                    </div>
+                    <div class="card-header">Ranglijst</div>
                     <div style="overflow-x: auto;">
                         <table class="stand-table">
                             <thead>
-                                <tr><th>#</th><th>Team</th><th>G</th><th>W</th><th>GL</th><th>V</th><th>P</th><th>+</th><th>-</th></tr>
+                                <tr><th>#</th><th>Team</th><th>G</th><th>W</th><th>GL</th><th>V</th><th>P</th></tr>
                             </thead>
                             <tbody>
-                                <tr class="highlight"><td>1</td><td>SV Overvecht/De Dreef JO14-2</td><td>5</td><td>4</td><td>1</td><td>0</td><td>13</td><td>28</td><td>7</td></tr>
-                                <tr><td>2</td><td>Sporting '70 JO14-2</td><td>6</td><td>4</td><td>1</td><td>1</td><td>13</td><td>30</td><td>20</td></tr>
-                                <tr><td>3</td><td>Saestum JO14-1</td><td>6</td><td>3</td><td>2</td><td>1</td><td>11</td><td>21</td><td>19</td></tr>
-                                <tr><td>4</td><td>Hercules JO14-3</td><td>5</td><td>3</td><td>1</td><td>1</td><td>10</td><td>20</td><td>10</td></tr>
-                                <tr><td>5</td><td>Kampong JO14-3</td><td>5</td><td>3</td><td>1</td><td>1</td><td>10</td><td>15</td><td>15</td></tr>
-                                <tr><td>6</td><td>Victoria JO14-5</td><td>6</td><td>3</td><td>1</td><td>2</td><td>10</td><td>23</td><td>12</td></tr>
-                                <tr><td>7</td><td>sv Parkhout JO14-2</td><td>5</td><td>3</td><td>0</td><td>2</td><td>9</td><td>30</td><td>19</td></tr>
-                                <tr><td>8</td><td>DVSU JO14-2</td><td>6</td><td>2</td><td>0</td><td>4</td><td>6</td><td>17</td><td>25</td></tr>
-                                <tr><td>9</td><td>Zwaluwen Utrecht '11 JO14-1</td><td>5</td><td>1</td><td>1</td><td>3</td><td>4</td><td>16</td><td>16</td></tr>
-                                <tr><td>10</td><td>De Meern JO14-5</td><td>5</td><td>1</td><td>0</td><td>4</td><td>3</td><td>9</td><td>30</td></tr>
-                                <tr><td>11</td><td>VVJ JO14-1</td><td>4</td><td>0</td><td>1</td><td>3</td><td>1</td><td>7</td><td>22</td></tr>
-                                <tr><td>12</td><td>PVC JO14-2</td><td>6</td><td>0</td><td>1</td><td>5</td><td>1</td><td>7</td><td>28</td></tr>
+                                <tr class="highlight"><td>1</td><td>SV Overvecht/De Dreef JO14-2</td><td>5</td><td>4</td><td>1</td><td>0</td><td>13</td></tr>
+                                <tr><td>2</td><td>Sporting '70 JO14-2</td><td>6</td><td>4</td><td>1</td><td>1</td><td>13</td></tr>
+                                <tr><td>3</td><td>Saestum JO14-1</td><td>6</td><td>3</td><td>2</td><td>1</td><td>11</td></tr>
+                                <tr><td>4</td><td>Hercules JO14-3</td><td>5</td><td>3</td><td>1</td><td>1</td><td>10</td></tr>
+                                <tr><td>5</td><td>Kampong JO14-3</td><td>5</td><td>3</td><td>1</td><td>1</td><td>10</td></tr>
+                                <tr><td>6</td><td>Victoria JO14-5</td><td>6</td><td>3</td><td>1</td><td>2</td><td>10</td></tr>
+                                <tr><td>7</td><td>sv Parkhout JO14-2</td><td>5</td><td>3</td><td>0</td><td>2</td><td>9</td></tr>
+                                <tr><td>8</td><td>DVSU JO14-2</td><td>6</td><td>2</td><td>0</td><td>4</td><td>6</td></tr>
+                                <tr><td>9</td><td>Zwaluwen Utrecht '11 JO14-1</td><td>5</td><td>1</td><td>1</td><td>3</td><td>4</td></tr>
+                                <tr><td>10</td><td>De Meern JO14-5</td><td>5</td><td>1</td><td>0</td><td>4</td><td>3</td></tr>
+                                <tr><td>11</td><td>VVJ JO14-1</td><td>4</td><td>0</td><td>1</td><td>3</td><td>1</td></tr>
+                                <tr><td>12</td><td>PVC JO14-2</td><td>6</td><td>0</td><td>1</td><td>5</td><td>1</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -204,47 +229,32 @@
                         <a href="https://www.voetbal.nl/team/T369116" target="_blank" class="v-button">Bekijk op Voetbal.nl ➔</a>
                     </div>
                 </div>
-
-                <div class="card">
-                    <div class="card-header">Programma Voorjaar 2026</div>
-                    <div class="match-row"><span class="m-date">ZAT 28 MRT</span><span class="m-teams">DVSU JO14-2 vs SV Overvecht/De Dreef JO14-2<br><small>(UIT)</small></span><span class="m-time">09:00</span></div>
-                    <div class="match-row"><span class="m-date">DIN 31 MRT</span><span class="m-teams">SV Overvecht/De Dreef JO14-2 vs VVJ JO14-1<br><small>(THUIS)</small></span><span class="m-time">19:00</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 11 APR</span><span class="m-teams">SV Overvecht/De Dreef JO14-2 vs Hercules JO14-3<br><small>(THUIS)</small></span><span class="m-time">08:30</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 18 APR</span><span class="m-teams">Saestum JO14-1 vs SV Overvecht/De Dreef JO14-2<br><small>(UIT)</small></span><span class="m-time">08:30</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 9 MEI</span><span class="m-teams">Sporting '70 JO14-2 vs SV Overvecht/De Dreef JO14-2<br><small>(UIT)</small></span><span class="m-time">15:00</span></div>
-                    <div class="match-row" style="border:none;"><span class="m-date">ZAT 16 MEI</span><span class="m-teams">SV Overvecht/De Dreef JO14-2 vs sv Parkhout JO14-2<br><small>(THUIS)</small></span><span class="m-time">16:15</span></div>
-                </div>
             </section>
 
             <section id="topscorers" class="page-section">
                 <div class="card">
                     <div class="card-header">Topscorers</div>
-                    <div class="score-row"><span>1. SPELER NAAM</span><span style="color:var(--dreef-rood)">0 goals</span></div>
-                    <div class="score-row"><span>2. SPELER NAAM</span><span style="color:var(--dreef-rood)">0 goals</span></div>
-                    <div class="score-row" style="border:none;"><span>3. SPELER NAAM</span><span style="color:var(--dreef-rood)">0 goals</span></div>
+                    <div style="padding:20px;">
+                        <div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #eee;"><span>1. SPELER NAAM</span><strong>0</strong></div>
+                        <div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #eee;"><span>2. SPELER NAAM</span><strong>0</strong></div>
+                        <div style="display:flex; justify-content:space-between; padding:10px;"><span>3. SPELER NAAM</span><strong>0</strong></div>
+                    </div>
                 </div>
             </section>
 
             <section id="trainingen" class="page-section">
                 <div class="card">
-                    <div class="card-header">Trainingsuren</div>
+                    <div class="card-header">Trainingen</div>
                     <div class="training-grid">
-                        <div class="t-card"><div class="t-day">Dinsdag</div><strong>17:15 - 18:15</strong><br>Veld 1</div>
-                        <div class="t-card"><div class="t-day">Donderdag</div><strong>17:15 - 18:15</strong><br>Veld 1</div>
+                        <div class="t-card"><div class="t-day">Dinsdag</div>17:15 - 18:15</div>
+                        <div class="t-card"><div class="t-day">Donderdag</div>17:15 - 18:15</div>
                     </div>
-                    <div style="margin: 0 30px 20px 30px; padding: 15px; background: #fff0f0; border-radius: 15px; border: 2px dashed var(--dreef-rood); text-align: center;">
-                        <strong style="color: var(--dreef-rood); text-transform: uppercase;">Belangrijk voor deze week:</strong><br>
-                        <span style="font-size: 0.9rem;">Niks speciaals deze week.</span>
-                    </div>
-                    <p style="text-align:center; color:var(--dreef-rood); font-weight:900; padding-bottom:20px; text-transform:uppercase;">Verzamelen: 15 minuten voor aanvang</p>
                 </div>
             </section>
 
             <footer>
-                &copy; 2026 S.V. Overvecht De Dreef | Utrecht <br>
-                <strong>Created by Mohammed Kaddouri</strong>
+                &copy; 2026 S.V. Overvecht De Dreef | Created by Mohammed Kaddouri
             </footer>
-
         </div>
     </main>
 
