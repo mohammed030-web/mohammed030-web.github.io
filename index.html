@@ -94,6 +94,22 @@
         .t-card { background: #f9f9f9; padding: 20px; border-radius: 15px; text-align: center; border-left: 5px solid var(--dreef-rood); }
         .t-day { font-family: 'Oswald'; color: var(--dreef-blauw); font-size: 1.2rem; margin-bottom: 5px; }
 
+        /* VOETBAL.NL KNOP STIJL */
+        .v-button-container { text-align: center; padding: 20px; background: #f8f9fa; }
+        .v-button { 
+            display: inline-block; 
+            background: var(--dreef-blauw); 
+            color: white; 
+            text-decoration: none; 
+            padding: 12px 25px; 
+            border-radius: 12px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            font-size: 0.9rem; 
+            transition: 0.3s ease;
+        }
+        .v-button:hover { background: var(--dreef-rood); transform: translateY(-2px); }
+
         footer { text-align: center; padding: 40px; color: #aaa; font-size: 0.85rem; line-height: 1.6; }
 
         @media (max-width: 900px) {
@@ -127,10 +143,15 @@
                         <div style="font-weight: 700; font-size: 1rem; line-height: 1.4;">
                             DEZE WEEK: <span style="font-weight: 400; color: #555;"><br>Niks speciaals deze week.</span>
                         </div>
-                        <div style="padding: 25px; display: flex; align-items: center; gap: 20px;">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">THUIS OEFENINGEN</div>
+                    <div style="padding: 25px; display: flex; align-items: center; gap: 20px;">
                         <span style="font-size: 2rem;">💪🏻</span>
                         <div style="font-weight: 700; font-size: 1rem; line-height: 1.4;">
-                            THUIS OEFENINGEN: <span style="font-weight: 400; color: #555;"><br>20 Pushups, 15 Squats, 10 Burpees, 30 Seconden Plank, 20 Situps,  20 Mountain Climbers, 10 Jumping Squats</span>
+                            WORKOUT: <span style="font-weight: 400; color: #555;"><br>20 Pushups, 15 Squats, 10 Burpees, 30s Plank, 20 Situps, 20 Mountain Climbers, 10 Jumping Squats</span>
                         </div>
                     </div>
                 </div>
@@ -174,6 +195,11 @@
                                 <tr><td>12</td><td>PVC JO14-2</td><td>6</td><td>0</td><td>1</td><td>5</td><td>1</td><td>7</td><td>28</td></tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="v-button-container">
+                        <a href="https://www.voetbal.nl/team/T369116/programma" target="_blank" class="v-button">
+                            Bekijk Team op Voetbal.nl ➔
+                        </a>
                     </div>
                 </div>
 
