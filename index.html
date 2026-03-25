@@ -3,34 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.V. Overvecht De Dreef | JO14-2 v2</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <title>S.V. Overvecht De Dreef | JO14-2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --dreef-blauw: #0d061a;
             --dreef-rood: #cc0000;
             --achtergrond: #f0f2f5;
+            --sidebar-breedte: 220px;
         }
 
-        body { font-family: 'Roboto', sans-serif; background: var(--achtergrond); margin: 0; padding: 0; }
+        body { font-family: 'Roboto', sans-serif; background: var(--achtergrond); margin: 0; display: flex; min-height: 100vh; }
 
-        header { 
-            background: var(--dreef-blauw); 
-            color: white; 
-            text-align: center; 
-            padding: 30px 10px; 
-            border-bottom: 8px solid var(--dreef-rood); 
+        /* --- ZIJBALK (SIDEBAR) --- */
+        .sidebar {
+            width: var(--sidebar-breedte);
+            background: var(--dreef-blauw);
+            color: white;
+            position: fixed;
+            height: 100%;
+            border-right: 5px solid var(--dreef-rood);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30px;
         }
 
-        .container { max-width: 650px; margin: 30px auto; padding: 0 15px; }
+        .sidebar img { width: 100px; margin-bottom: 20px; }
+
+        .nav-button {
+            width: 80%;
+            background: transparent;
+            border: 2px solid var(--dreef-rood);
+            color: white;
+            padding: 12px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-button:hover { background: var(--dreef-rood); color: white; }
+
+        /* --- HOOFDINHOUD --- */
+        .main-content {
+            margin-left: var(--sidebar-breedte);
+            flex: 1;
+            padding: 40px;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; }
 
         .card { 
             background: white; 
-            border-radius: 25px; 
+            border-radius: 20px; 
             overflow: hidden; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
         }
 
         .card-header { 
@@ -38,117 +71,103 @@
             color: white; 
             padding: 15px; 
             font-family: 'Oswald', sans-serif; 
-            font-size: 1.5rem; 
+            font-size: 1.4rem; 
             text-transform: uppercase;
+            text-align: center;
         }
 
-        .match-row {
+        /* Wedstrijd Schema Lijst */
+        .match-list-item {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            padding: 40px 10px;
-            gap: 10px;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            font-size: 0.85rem;
         }
 
-        .team { width: 35%; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; line-height: 1.3; }
+        .match-date { color: var(--dreef-rood); font-weight: 900; min-width: 120px; }
+        .match-teams { flex: 1; text-align: center; font-weight: 700; padding: 0 10px; }
+        .match-time { background: #eee; padding: 5px 10px; border-radius: 5px; font-weight: 900; }
 
-        .score-box {
-            background: var(--dreef-blauw);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 15px;
-            font-family: 'Oswald', sans-serif;
-            font-size: 3rem;
-            white-space: nowrap;
-            border-bottom: 4px solid var(--dreef-rood);
-            min-width: 100px;
+        /* Voor mobiel */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { position: relative; width: 100%; height: auto; border-right: none; border-bottom: 5px solid var(--dreef-rood); padding: 20px 0; }
+            .main-content { margin-left: 0; padding: 20px; }
         }
-
-        .vs-circle {
-            width: 40px; height: 40px; background: #f0f0f0; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 10px; color: #bbb; font-size: 0.8rem;
-        }
-
-        .date-footer { 
-            padding: 0 15px 25px; 
-            color: #888; 
-            font-weight: 900; 
-            font-size: 0.75rem; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px;
-        }
-
-        /* MVP STYLE */
-        .mvp-content { padding: 30px; background: linear-gradient(to bottom, #fff, #fff9f9); }
-        .mvp-star { color: #ffcc00; font-size: 1.5rem; margin-bottom: 10px; }
-        .mvp-name { font-size: 2rem; color: var(--dreef-blauw); margin-bottom: 5px; text-transform: uppercase; font-weight: 900; }
-        .mvp-reason { color: #666; font-size: 1rem; font-style: italic; line-height: 1.4; }
-
-        .list-item { 
-            display: flex; justify-content: space-between; 
-            padding: 18px 25px; border-top: 1px solid #eee; font-weight: 900;
-        }
-
-        footer { text-align: center; padding: 40px; color: #777; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="logo.png" alt="Logo" style="width: 120px; height: auto; margin-bottom: 15px;">
-        <h1>S.V. OVERVECHT <span style="color:var(--dreef-rood)">DE DREEF</span></h1>
-        <p style="margin: 5px 0 0; font-size: 0.9rem; letter-spacing: 2px;">OFFICIËLE TEAMSITE</p>
-    </header>
-
-    <div class="container">
-
-        <div class="card">
-            <div class="card-header">Laatste Resultaat</div>
-            <div class="match-row">
-                <div class="team">
-                    <img src="logo.png" style="width: 30px; margin-bottom: 8px;"><br>
-                    SV OVERVECHT/DE DREEF JO14-2
-                </div>
-                <div class="score-box">5 - 3</div>
-                <div class="team">
-                    <div class="vs-circle">VS</div>
-                    ZWALUWEN UTRECHT '11 JO14-1
-                </div>
-            </div>
-            <div class="date-footer">Zaterdag 28 maart 2026 - UITWEDSTRIJD TEGEN DVSU JO14-2</div>
+    <div class="sidebar">
+        <img src="logo.png" alt="Dreef Logo">
+        <div style="font-family:'Oswald'; margin-bottom: 20px; text-align:center;">
+            JO14-2 <span style="color:var(--dreef-rood)">DREEF</span>
         </div>
-
-        <div class="card">
-            <div class="card-header">Man of the Match (MVP)</div>
-            <div class="mvp-content">
-                <div class="mvp-name">NAAM SPELER</div>
-                <div class="mvp-reason">"Wat een geweldige inzet en 2 prachtige assists!"</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">Topscorers</div>
-            <div class="list-item"><span>1. SPELER NAAM</span><span style="color:var(--dreef-rood)">0 GOALS</span></div>
-            <div class="list-item"><span>2. SPELER NAAM</span><span style="color:var(--dreef-rood)">0 GOALS</span></div>
-            <div class="list-item"><span>3. SPELER NAAM</span><span style="color:var(--dreef-rood)">0 GOALS</span></div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">Trainingen</div>
-            <div style="padding: 25px;">
-                <p><strong>DINSDAG:</strong> 17:15 - 18:15 (VELD 1)</p>
-                <p><strong>DONDERDAG:</strong> 17:15 - 18:15 (VELD 1)</p>
-                <p style="font-size: 0.75rem; color: #999; margin-top: 15px;">VERZAMELEN: 15 MINUTEN VOOR AANVANG</p>
-            </div>
-        </div>
-
+        <a href="#home" class="nav-button">Home</a>
+        <a href="#wedstrijden" class="nav-button">Wedstrijden</a>
+        <a href="#topscorers" class="nav-button">Topscorers</a>
+        <a href="#trainingen" class="nav-button">Trainingen</a>
     </div>
 
-    <footer>
-        &copy; 2026 S.V. OVERVECHT DE DREEF | UTRECHT<br>
-        <span style="color:var(--dreef-rood)">CREATED BY MOHAMMED KADDOURI</span>
-    </footer>
+    <div class="main-content">
+        <div class="container">
+
+            <div id="wedstrijden" class="card">
+                <div class="card-header">Programma Voorjaar 2026</div>
+                
+                <div class="match-list-item">
+                    <span class="match-date">ZAT 28 MRT</span>
+                    <span class="match-teams">DVSU JO14-2 vs SV OVERVECHT/DE DREEF JO14-2</span>
+                    <span class="match-time">09:00</span>
+                </div>
+
+                <div class="match-list-item">
+                    <span class="match-date">DIN 31 MRT</span>
+                    <span class="match-teams">SV OVERVECHT/DE DREEF JO14-2 vs VVJ JO14-1</span>
+                    <span class="match-time">19:00</span>
+                </div>
+
+                <div class="match-list-item">
+                    <span class="match-date">ZAT 11 APR</span>
+                    <span class="match-teams">SV OVERVECHT/DE DREEF JO14-2 vs HERCULES JO14-3</span>
+                    <span class="match-time">08:30</span>
+                </div>
+
+                <div class="match-list-item">
+                    <span class="match-date">ZAT 18 APR</span>
+                    <span class="match-teams">SAESTUM JO14-1 vs SV OVERVECHT/DE DREEF JO14-2</span>
+                    <span class="match-time">08:30</span>
+                </div>
+
+                <div class="match-list-item">
+                    <span class="match-date">ZAT 9 MEI</span>
+                    <span class="match-teams">SPORTING '70 JO14-2 vs SV OVERVECHT/DE DREEF JO14-2</span>
+                    <span class="match-time">15:00</span>
+                </div>
+
+                <div class="match-list-item" style="border-bottom: none;">
+                    <span class="match-date">ZAT 16 MEI</span>
+                    <span class="match-teams">SV OVERVECHT/DE DREEF JO14-2 vs SV PARKHOUT JO14-2</span>
+                    <span class="match-time">16:15</span>
+                </div>
+            </div>
+
+            <div id="trainingen" class="card">
+                <div class="card-header">Trainingsuren</div>
+                <div style="padding: 25px; text-align: center; font-weight: 900;">
+                    <p>DINSDAG: 17:15 - 18:15 (VELD 1)</p>
+                    <p>DONDERDAG: 17:15 - 18:15 (VELD 1)</p>
+                </div>
+            </div>
+
+            <footer style="text-align: center; color: #888; font-size: 0.8rem; padding-top: 20px;">
+                &copy; 2026 S.V. Overvecht De Dreef | Created by Mohammed Kaddouri
+            </footer>
+
+        </div>
+    </div>
 
 </body>
 </html>
