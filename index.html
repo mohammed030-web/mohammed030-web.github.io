@@ -70,7 +70,6 @@
         .stand-table td { padding: 12px 15px; border-bottom: 1px solid #f0f0f0; }
         .stand-table tr:nth-child(even) { background-color: #fafafa; }
         .stand-table tr.highlight { background-color: #fff0f0; font-weight: 900; }
-        .pos { width: 30px; font-weight: 900; color: var(--dreef-rood); }
         .pts { font-weight: 900; color: var(--dreef-blauw); }
 
         /* WEDSTRIJD STYLES */
@@ -78,6 +77,7 @@
         .m-date { font-weight: 900; color: var(--dreef-rood); width: 110px; font-size: 0.85rem; }
         .m-teams { flex: 1; text-align: center; font-weight: 700; font-size: 0.9rem; }
         .m-time { font-family: 'Oswald'; background: var(--dreef-blauw); color: white; padding: 5px 12px; border-radius: 6px; min-width: 50px; text-align: center; }
+        .type-label { font-size: 0.7rem; color: #888; display: block; margin-top: 2px; }
 
         footer { text-align: center; padding: 30px; color: #aaa; font-size: 0.8rem; }
 
@@ -146,12 +146,36 @@
 
                 <div class="card">
                     <div class="card-header">Programma Voorjaar 2026</div>
-                    <div class="match-row"><span class="m-date">ZAT 28 MRT</span><span class="m-teams">DVSU JO14-2 vs SV OVERVECHT/DE DREEF JO14-2</span><span class="m-time">09:00</span></div>
-                    <div class="match-row"><span class="m-date">DIN 31 MRT</span><span class="m-teams">SV OVERVECHT/DE DREEF JO14-2 vs VVJ JO14-1</span><span class="m-time">19:00</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 11 APR</span><span class="m-teams">SV OVERVECHT/DE DREEF JO14-2 vs HERCULES JO14-3</span><span class="m-time">08:30</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 18 APR</span><span class="m-teams">SAESTUM JO14-1 vs SV OVERVECHT/DE DREEF JO14-2</span><span class="m-time">08:30</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 9 MEI</span><span class="m-teams">SPORTING '70 JO14-2 vs SV OVERVECHT/DE DREEF JO14-2</span><span class="m-time">15:00</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 16 MEI</span><span class="m-teams">SV OVERVECHT/DE DREEF JO14-2 vs SV PARKHOUT JO14-2</span><span class="m-time">16:15</span></div>
+                    <div class="match-row">
+                        <span class="m-date">ZAT 28 MRT</span>
+                        <span class="m-teams">DVSU JO14-2 vs SV OVERVECHT/DE DREEF JO14-2<br><span class="type-label">(UITWEDSTRIJD)</span></span>
+                        <span class="m-time">09:00</span>
+                    </div>
+                    <div class="match-row">
+                        <span class="m-date">DIN 31 MRT</span>
+                        <span class="m-teams">SV OVERVECHT/DE DREEF JO14-2 vs VVJ JO14-1<br><span class="type-label">(THUISWEDSTRIJD)</span></span>
+                        <span class="m-time">19:00</span>
+                    </div>
+                    <div class="match-row">
+                        <span class="m-date">ZAT 11 APR</span>
+                        <span class="m-teams">SV OVERVECHT/DE DREEF JO14-2 vs HERCULES JO14-3<br><span class="type-label">(THUISWEDSTRIJD)</span></span>
+                        <span class="m-time">08:30</span>
+                    </div>
+                    <div class="match-row">
+                        <span class="m-date">ZAT 18 APR</span>
+                        <span class="m-teams">SAESTUM JO14-1 vs SV OVERVECHT/DE DREEF JO14-2<br><span class="type-label">(UITWEDSTRIJD)</span></span>
+                        <span class="m-time">08:30</span>
+                    </div>
+                    <div class="match-row">
+                        <span class="m-date">ZAT 9 MEI</span>
+                        <span class="m-teams">SPORTING '70 JO14-2 vs SV OVERVECHT/DE DREEF JO14-2<br><span class="type-label">(UITWEDSTRIJD)</span></span>
+                        <span class="m-time">15:00</span>
+                    </div>
+                    <div class="match-row">
+                        <span class="m-date">ZAT 16 MEI</span>
+                        <span class="m-teams">SV OVERVECHT/DE DREEF JO14-2 vs SV PARKHOUT JO14-2<br><span class="type-label">(THUISWEDSTRIJD)</span></span>
+                        <span class="m-time">16:15</span>
+                    </div>
                 </div>
             </section>
 
