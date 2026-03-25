@@ -73,6 +73,19 @@
         .card { background: white; border-radius: 25px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 40px; }
         .card-header { background: var(--dreef-rood); color: white; padding: 18px; font-family: 'Oswald', sans-serif; font-size: 1.5rem; text-transform: uppercase; text-align: center; }
 
+        /* MEDEDELING STYLES */
+        .announcement-banner {
+            background: var(--dreef-blauw);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border-left: 8px solid var(--dreef-rood);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         /* STAND TABEL */
         .stand-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
         .stand-table th { background: #f8f9fa; padding: 12px; text-align: left; font-weight: 900; color: var(--dreef-blauw); border-bottom: 2px solid #eee; }
@@ -119,6 +132,13 @@
         <div class="container">
 
             <section id="home" class="page-section active">
+                <div class="announcement-banner">
+                    <span style="font-size: 1.5rem;">📢</span>
+                    <div style="font-weight: 900; font-size: 0.9rem;">
+                        MEDEDELING: <span style="font-weight: 400;">Zaterdag verzamelen om 08:00 voor de uitwedstrijd!</span>
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-header">Laatste Resultaat</div>
                     <div style="padding: 50px 20px; text-align: center;">
@@ -188,6 +208,12 @@
                         <div class="t-card"><div class="t-day">Dinsdag</div><strong>17:15 - 18:15</strong><br>Veld 1</div>
                         <div class="t-card"><div class="t-day">Donderdag</div><strong>17:15 - 18:15</strong><br>Veld 1</div>
                     </div>
+
+                    <div style="margin: 0 30px 20px 30px; padding: 15px; background: #fff0f0; border-radius: 15px; border: 2px dashed var(--dreef-rood); text-align: center;">
+                        <strong style="color: var(--dreef-rood); text-transform: uppercase;">Belangrijk voor deze week:</strong><br>
+                        <span style="font-size: 0.9rem;">Vergeet je scheenbeschermers niet! We gaan extra trainen op conditie.</span>
+                    </div>
+
                     <p style="text-align:center; color:var(--dreef-rood); font-weight:900; padding-bottom:20px; text-transform:uppercase;">Verzamelen: 15 minuten voor aanvang</p>
                 </div>
             </section>
