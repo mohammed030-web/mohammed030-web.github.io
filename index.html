@@ -16,14 +16,14 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Roboto', sans-serif; background: var(--achtergrond); margin: 0; display: flex; min-height: 100vh; color: #333; overflow-x: hidden; }
 
-        /* --- SIDEBAR (KLEUREN OMGEWISSELD) --- */
+        /* --- SIDEBAR --- */
         .sidebar {
             width: var(--sidebar-breedte);
-            background: var(--dreef-rood); /* Nu Rood */
+            background: var(--dreef-rood);
             color: white;
             position: fixed;
             height: 100%;
-            border-right: 6px solid var(--dreef-blauw); /* Nu Blauwe rand */
+            border-right: 6px solid var(--dreef-blauw);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -33,62 +33,59 @@
         }
 
         .sidebar img { width: 120px; margin-bottom: 20px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
-
-        .sidebar-title { font-family: 'Oswald', sans-serif; font-size: 1.4rem; margin-bottom: 40px; text-align: center; text-transform: uppercase; }
+        .sidebar-title { font-family: 'Oswald', sans-serif; font-size: 1.4rem; margin-bottom: 30px; text-align: center; text-transform: uppercase; }
 
         .nav-button {
             width: 85%;
-            background: var(--dreef-blauw); /* Knoppen nu Blauw */
+            background: var(--dreef-blauw);
             border: 2px solid rgba(255,255,255,0.2);
             color: white;
-            padding: 15px;
-            margin: 10px 0;
+            padding: 12px;
+            margin: 6px 0;
             cursor: pointer;
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             border-radius: 12px;
             text-align: center;
-            text-decoration: none;
             transition: all 0.3s ease;
-            font-size: 1.1rem;
-            display: block;
+            font-size: 1rem;
         }
 
-        .nav-button:hover { background: #1a1a2e; transform: scale(1.05); border-color: white; }
+        .nav-button:hover { background: #1a1a2e; transform: scale(1.05); }
 
-        /* --- HOOFDINHOUD --- */
-        .main-content { margin-left: var(--sidebar-breedte); flex: 1; padding: 60px; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 850px; }
+        /* --- CONTENT --- */
+        .main-content { margin-left: var(--sidebar-breedte); flex: 1; padding: 40px; display: flex; justify-content: center; }
+        .container { width: 100%; max-width: 900px; }
 
-        /* PAGINA SECTIES (Standaard verborgen) */
         .page-section { display: none; animation: fadeIn 0.5s ease; }
         .page-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card { background: white; border-radius: 25px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.08); margin-bottom: 40px; }
+        .card-header { background: var(--dreef-rood); color: white; padding: 18px; font-family: 'Oswald', sans-serif; font-size: 1.5rem; text-transform: uppercase; text-align: center; }
 
-        .card { background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid #eee; margin-bottom: 40px; }
-        .card-header { background: var(--dreef-rood); color: white; padding: 20px; font-family: 'Oswald', sans-serif; font-size: 1.6rem; text-transform: uppercase; text-align: center; }
+        /* STAND TABEL */
+        .stand-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        .stand-table th { background: #f8f9fa; padding: 15px; text-align: left; font-weight: 900; color: var(--dreef-blauw); border-bottom: 2px solid #eee; }
+        .stand-table td { padding: 12px 15px; border-bottom: 1px solid #f0f0f0; }
+        .stand-table tr:nth-child(even) { background-color: #fafafa; }
+        .stand-table tr.highlight { background-color: #fff0f0; font-weight: 900; }
+        .pos { width: 30px; font-weight: 900; color: var(--dreef-rood); }
+        .pts { font-weight: 900; color: var(--dreef-blauw); }
 
-        /* Match Styles */
-        .match-row { display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; border-bottom: 1px solid #f0f0f0; }
-        .match-row:last-child { border-bottom: none; }
-        .m-date { font-weight: 900; color: var(--dreef-rood); width: 120px; }
-        .m-teams { flex: 1; text-align: center; font-weight: 700; font-size: 0.95rem; padding: 0 15px; }
-        .m-time { font-family: 'Oswald', sans-serif; background: var(--dreef-blauw); color: white; padding: 6px 15px; border-radius: 8px; font-size: 1rem; }
+        /* WEDSTRIJD STYLES */
+        .match-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid #f0f0f0; }
+        .m-date { font-weight: 900; color: var(--dreef-rood); width: 110px; font-size: 0.85rem; }
+        .m-teams { flex: 1; text-align: center; font-weight: 700; font-size: 0.9rem; }
+        .m-time { font-family: 'Oswald'; background: var(--dreef-blauw); color: white; padding: 5px 12px; border-radius: 6px; min-width: 50px; text-align: center; }
 
-        /* Topscorers Styles */
-        .score-row { display: flex; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid #f5f5f5; align-items: center; }
-        .score-name { font-weight: 900; font-size: 1.2rem; }
-        .score-badge { background: var(--dreef-rood); color: white; padding: 8px 20px; border-radius: 50px; font-weight: 900; }
-
-        /* Footer */
-        footer { text-align: center; padding: 40px; color: #aaa; font-size: 0.85rem; margin-top: 50px; }
+        footer { text-align: center; padding: 30px; color: #aaa; font-size: 0.8rem; }
 
         @media (max-width: 900px) {
-            body { flex-direction: column; }
-            .sidebar { position: relative; width: 100%; height: auto; border-right: none; border-bottom: 6px solid var(--dreef-blauw); padding: 30px 0; }
-            .main-content { margin-left: 0; padding: 30px 15px; }
-            .nav-button { width: 90%; }
+            .sidebar { position: relative; width: 100%; height: auto; border-right: none; border-bottom: 6px solid var(--dreef-blauw); padding: 20px 0; }
+            .main-content { margin-left: 0; padding: 20px 10px; }
+            .stand-table { font-size: 0.75rem; }
+            .match-row { padding: 15px 10px; }
         }
     </style>
 </head>
@@ -96,9 +93,9 @@
 
     <nav class="sidebar">
         <img src="logo.png" alt="Logo">
-        <div class="sidebar-title">DE DREEF 14-2</div>
+        <div class="sidebar-title">JO14-2 <span style="color:var(--dreef-blauw)">DE DREEF</span></div>
         <button class="nav-button" onclick="showPage('home')">Home</button>
-        <button class="nav-button" onclick="showPage('wedstrijden')">Wedstrijden</button>
+        <button class="nav-button" onclick="showPage('wedstrijden')">Wedstrijden & Stand</button>
         <button class="nav-button" onclick="showPage('topscorers')">Topscorers</button>
         <button class="nav-button" onclick="showPage('trainingen')">Trainingen</button>
     </nav>
@@ -109,35 +106,64 @@
             <section id="home" class="page-section active">
                 <div class="card">
                     <div class="card-header">Laatste Resultaat</div>
-                    <div style="padding: 50px 20px; text-align: center;">
-                        <div style="display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 30px;">
-                            <div style="width: 35%; font-weight: 900; font-size: 0.9rem;">ZWALUWEN UTRECHT '11 JO14-1</div>
-                            <div style="background: var(--dreef-blauw); color: white; padding: 20px 30px; border-radius: 20px; font-family: 'Oswald'; font-size: 3.5rem;">3 - 5</div>
-                            <div style="width: 35%; font-weight: 900; font-size: 0.9rem;">SV OVERVECHT/DE DREEF JO14-2</div>
+                    <div style="padding: 40px; text-align: center;">
+                        <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+                            <div style="width: 30%; font-weight: 900;">SV OVERVECHT/DE DREEF JO14-2</div>
+                            <div style="background: var(--dreef-blauw); color: white; padding: 15px 25px; border-radius: 15px; font-family: 'Oswald'; font-size: 3rem;">5 - 3</div>
+                            <div style="width: 30%; font-weight: 900;">ZWALUWEN UTRECHT '11 JO14-1</div>
                         </div>
-                        <div style="color: #888; font-weight: 900; text-transform: uppercase;">Zaterdag 14 Maart - Uitwedstrijd</div>
+                        <p style="margin-top: 20px; color: #888; font-weight: 700;">ZATERDAG 14 MAART - UITWEDSTRIJD</p>
                     </div>
                 </div>
             </section>
 
             <section id="wedstrijden" class="page-section">
+                
+                <div class="card">
+                    <div class="card-header">Ranglijst</div>
+                    <div style="overflow-x: auto;">
+                        <table class="stand-table">
+                            <thead>
+                                <tr><th>#</th><th>Team</th><th>G</th><th>W</th><th>GL</th><th>V</th><th class="pts">P</th><th>+</th><th>-</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr class="highlight"><td>1</td><td>SV Overvecht/De Dreef JO14-2</td><td>5</td><td>4</td><td>1</td><td>0</td><td class="pts">13</td><td>28</td><td>7</td></tr>
+                                <tr><td>2</td><td>Sporting '70 JO14-2</td><td>6</td><td>4</td><td>1</td><td>1</td><td class="pts">13</td><td>30</td><td>20</td></tr>
+                                <tr><td>3</td><td>Saestum JO14-1</td><td>6</td><td>3</td><td>2</td><td>1</td><td class="pts">11</td><td>21</td><td>19</td></tr>
+                                <tr><td>4</td><td>Hercules JO14-3</td><td>5</td><td>3</td><td>1</td><td>1</td><td class="pts">10</td><td>20</td><td>10</td></tr>
+                                <tr><td>5</td><td>Kampong JO14-3</td><td>5</td><td>3</td><td>1</td><td>1</td><td class="pts">10</td><td>15</td><td>15</td></tr>
+                                <tr><td>6</td><td>Victoria JO14-5</td><td>6</td><td>3</td><td>1</td><td>2</td><td class="pts">10</td><td>23</td><td>12</td></tr>
+                                <tr><td>7</td><td>sv Parkhout JO14-2</td><td>5</td><td>3</td><td>0</td><td>2</td><td class="pts">9</td><td>30</td><td>19</td></tr>
+                                <tr><td>8</td><td>DVSU JO14-2</td><td>6</td><td>2</td><td>0</td><td>4</td><td class="pts">6</td><td>17</td><td>25</td></tr>
+                                <tr><td>9</td><td>Zwaluwen Utrecht '11 JO14-1</td><td>5</td><td>1</td><td>1</td><td>3</td><td class="pts">4</td><td>16</td><td>16</td></tr>
+                                <tr><td>10</td><td>De Meern JO14-5</td><td>5</td><td>1</td><td>0</td><td>4</td><td class="pts">3</td><td>9</td><td>30</td></tr>
+                                <tr><td>11</td><td>VVJ JO14-1</td><td>4</td><td>0</td><td>1</td><td>3</td><td class="pts">1</td><td>7</td><td>22</td></tr>
+                                <tr><td>12</td><td>PVC JO14-2</td><td>6</td><td>0</td><td>1</td><td>5</td><td class="pts">1</td><td>7</td><td>28</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-header">Programma Voorjaar 2026</div>
-                    <div class="match-row"><span class="m-date">ZAT 28 MRT</span><span class="m-teams">DVSU JO14-2 vs SV OVERVECHT/DE DREEF JO14-2 (UIT)</span><span class="m-time">09:00</span></div>
-                    <div class="match-row"><span class="m-date">DIN 31 MRT</span><span class="m-teams">SV OVERVECHT/DE DREEF JO14-2 vs VVJ JO14-1 (THUIS)</span><span class="m-time">19:00</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 11 APR</span><span class="m-teams">SV OVERVECHT/DE DREEF JO14-2 vs HERCULES JO14-3 (THUIS)</span><span class="m-time">08:30</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 18 APR</span><span class="m-teams">SAESTUM JO14-1 vs SV OVERVECHT/DE DREEF JO14-2 (UIT)</span><span class="m-time">08:30</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 9 MEI</span><span class="m-teams">SPORTING '70 JO14-2 vs SV OVERVECHT/DE DREEF JO14-2 (UIT)</span><span class="m-time">15:00</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 16 MEI</span><span class="m-teams">SV OVERVECHT/DE DREEF JO14-2 vs SV PARKHOUT JO14-2 (THUIS)</span><span class="m-time">16:15</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 28 MRT</span><span class="m-teams">DVSU JO14-2 vs SV OVERVECHT/DE DREEF JO14-2</span><span class="m-time">09:00</span></div>
+                    <div class="match-row"><span class="m-date">DIN 31 MRT</span><span class="m-teams">SV OVERVECHT/DE DREEF JO14-2 vs VVJ JO14-1</span><span class="m-time">19:00</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 11 APR</span><span class="m-teams">SV OVERVECHT/DE DREEF JO14-2 vs HERCULES JO14-3</span><span class="m-time">08:30</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 18 APR</span><span class="m-teams">SAESTUM JO14-1 vs SV OVERVECHT/DE DREEF JO14-2</span><span class="m-time">08:30</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 9 MEI</span><span class="m-teams">SPORTING '70 JO14-2 vs SV OVERVECHT/DE DREEF JO14-2</span><span class="m-time">15:00</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 16 MEI</span><span class="m-teams">SV OVERVECHT/DE DREEF JO14-2 vs SV PARKHOUT JO14-2</span><span class="m-time">16:15</span></div>
                 </div>
             </section>
 
             <section id="topscorers" class="page-section">
                 <div class="card">
-                    <div class="card-header">Topscorers JO14-2</div>
-                    <div class="score-row"><span class="score-name">Speler 1</span><span class="score-badge">0 Goals</span></div>
-                    <div class="score-row"><span class="score-name">Speler 2</span><span class="score-badge">0 Goals</span></div>
-                    <div class="score-row"><span class="score-name">Speler 3</span><span class="score-badge">0 Goals</span></div>
+                    <div class="card-header">Topscorers</div>
+                    <div style="padding: 30px;">
+                        <div style="display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee;">
+                            <span style="font-weight: 900;">1. Mohammed Kaddouri</span>
+                            <span style="color: var(--dreef-rood); font-weight: 900;">12 goals</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -145,34 +171,22 @@
                 <div class="card">
                     <div class="card-header">Trainingsuren</div>
                     <div style="padding: 40px; text-align: center;">
-                        <div style="margin-bottom: 20px; font-size: 1.4rem;"><strong>DINSDAG:</strong> 17:15 - 18:15 (VELD 1)</div>
-                        <div style="margin-bottom: 30px; font-size: 1.4rem;"><strong>DONDERDAG:</strong> 17:15 - 18:15 (VELD 1)</div>
-                        <div style="color: var(--dreef-rood); font-weight: 900; border-top: 1px solid #eee; padding-top: 20px;">VERZAMELEN: 15 MINUTEN VOOR AANVANG</div>
+                        <p style="font-size: 1.2rem; margin-bottom: 10px;"><strong>DINSDAG:</strong> 17:15 - 18:15 (Veld 1)</p>
+                        <p style="font-size: 1.2rem;"><strong>DONDERDAG:</strong> 17:15 - 18:15 (Veld 1)</p>
                     </div>
                 </div>
             </section>
 
-            <footer>
-                &copy; 2026 S.V. Overvecht De Dreef | Utrecht<br>
-                Created by Mohammed Kaddouri
-            </footer>
-
+            <footer>&copy; 2026 S.V. Overvecht De Dreef | Utrecht</footer>
         </div>
     </main>
 
     <script>
-        function showPage(pageId) {
-            // Verberg alle secties
-            const sections = document.querySelectorAll('.page-section');
-            sections.forEach(section => section.classList.remove('active'));
-            
-            // Toon de gekozen sectie
-            document.getElementById(pageId).classList.add('active');
-            
-            // Scroll naar boven bij wissel
+        function showPage(id) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
             window.scrollTo(0, 0);
         }
     </script>
-
 </body>
 </html>
