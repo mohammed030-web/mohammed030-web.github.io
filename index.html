@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.V. Overvecht De Dreef | JO14-2</title>
+    <title>S.V. Overvecht De Dreef | JO14-2 v2</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -30,6 +30,7 @@
             overflow: hidden; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
+            margin-bottom: 25px;
         }
 
         .card-header { 
@@ -78,6 +79,12 @@
             letter-spacing: 0.5px;
         }
 
+        /* MVP STYLE */
+        .mvp-content { padding: 30px; background: linear-gradient(to bottom, #fff, #fff9f9); }
+        .mvp-star { color: #ffcc00; font-size: 1.5rem; margin-bottom: 10px; }
+        .mvp-name { font-size: 2rem; color: var(--dreef-blauw); margin-bottom: 5px; text-transform: uppercase; font-weight: 900; }
+        .mvp-reason { color: #666; font-size: 1rem; font-style: italic; line-height: 1.4; }
+
         .list-item { 
             display: flex; justify-content: space-between; 
             padding: 18px 25px; border-top: 1px solid #eee; font-weight: 900;
@@ -103,9 +110,7 @@
                     <img src="logo.png" style="width: 30px; margin-bottom: 8px;"><br>
                     SV OVERVECHT/DE DREEF JO14-2
                 </div>
-                
                 <div class="score-box">5 - 3</div>
-
                 <div class="team">
                     <div class="vs-circle">VS</div>
                     ZWALUWEN UTRECHT '11 JO14-1
@@ -114,25 +119,21 @@
             <div class="date-footer">Zaterdag 28 maart 2026 - UITWEDSTRIJD TEGEN DVSU JO14-2</div>
         </div>
 
-        <br>
-
         <div class="card">
-            <div class="card-header">Topscorers</div>
-            <div class="list-item">
-                <span>1. SPELER NAAM</span>
-                <span style="color:var(--dreef-rood)">0 GOALS</span>
-            </div>
-            <div class="list-item">
-                <span>2. SPELER NAAM</span>
-                <span style="color:var(--dreef-rood)">0 GOALS</span>
-            </div>
-             <div class="list-item">
-                <span>3. SPELER NAAM</span>
-                <span style="color:var(--dreef-rood)">0 GOALS</span>
+            <div class="card-header">Man of the Match (MVP)</div>
+            <div class="mvp-content">
+                <div class="mvp-star">⭐⭐⭐</div>
+                <div class="mvp-name">NAAM SPELER</div>
+                <div class="mvp-reason">"Wat een geweldige inzet en 2 prachtige assists!"</div>
             </div>
         </div>
 
-        <br>
+        <div class="card">
+            <div class="card-header">Topscorers</div>
+            <div class="list-item"><span>1. SPELER NAAM</span><span style="color:var(--dreef-rood)">0 GOALS</span></div>
+            <div class="list-item"><span>2. SPELER NAAM</span><span style="color:var(--dreef-rood)">0 GOALS</span></div>
+            <div class="list-item"><span>3. SPELER NAAM</span><span style="color:var(--dreef-rood)">0 GOALS</span></div>
+        </div>
 
         <div class="card">
             <div class="card-header">Trainingen</div>
