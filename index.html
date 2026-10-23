@@ -18,188 +18,224 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
+            --hercules-donker: #001f35;
             --hercules-blauw: #002b49;
             --hercules-lichtblauw: #00406c;
             --achtergrond: #f4f7f9;
-            --sidebar-breedte: 260px;
-            --sidebar-ingeklapt: 80px;
+            --left-rail-breedte: 65px;
+            --menu-breedte: 220px;
+            --menu-ingeklapt: 60px;
             --wit: #ffffff;
-            --rand-kleur: #e5e7eb;
         }
 
         html { scroll-behavior: smooth; }
         * { box-sizing: border-box; }
         body { font-family: 'Roboto', sans-serif; background: var(--achtergrond); margin: 0; display: flex; min-height: 100vh; color: #333; overflow-x: hidden; }
 
-        /* --- SIDEBAR --- */
-        .sidebar {
-            width: var(--sidebar-breedte);
-            background: var(--hercules-blauw);
-            color: white;
+        /* --- MAGISTER-STIJL DUBBELE SIDEBAR --- */
+        .app-sidebar {
+            display: flex;
             position: fixed;
-            height: 100%;
-            border-right: 4px solid var(--hercules-lichtblauw);
+            height: 100vh;
+            z-index: 100;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.15);
+        }
+
+        /* 1. Vaste Donkere Rail (Uiterst Links) */
+        .rail-left {
+            width: var(--left-rail-breedte);
+            background: var(--hercules-donker);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 25px;
-            padding-bottom: 20px;
-            z-index: 100;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.15);
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 15px 0;
+            justify-content: space-between;
+            border-right: 1px solid rgba(255,255,255,0.08);
+            z-index: 2;
         }
 
-        .sidebar.collapsed {
-            width: var(--sidebar-ingeklapt);
+        .rail-logo {
+            width: 42px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
-        .sidebar-logo {
-            width: 100px;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-            transition: width 0.3s;
+        .rail-bottom-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .sidebar.collapsed .sidebar-logo {
-            width: 50px;
-            margin-bottom: 25px;
+        .rail-icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
         }
 
-        .sidebar-title { 
-            font-family: 'Oswald', sans-serif; 
-            font-size: 1.3rem; 
-            margin-bottom: 25px; 
-            text-align: center; 
-            text-transform: uppercase; 
-            color: var(--wit); 
-            letter-spacing: 0.5px;
+        .rail-icon-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* 2. Inklapbare Menu Kolom (Ernaast) */
+        .menu-panel {
+            width: var(--menu-breedte);
+            background: var(--hercules-blauw);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 10px;
+            justify-content: space-between;
+            transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            border-right: 3px solid var(--hercules-lichtblauw);
+        }
+
+        .app-sidebar.collapsed .menu-panel {
+            width: var(--menu-ingeklapt);
+            align-items: center;
+        }
+
+        /* HERCULES LOGO / HEADER IN DE MENU KOLOM */
+        .menu-brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 5px 10px 22px 10px;
             white-space: nowrap;
-            opacity: 1;
-            transition: opacity 0.2s ease;
         }
 
-        .sidebar.collapsed .sidebar-title {
+        .menu-brand-logo {
+            width: 36px;
+            height: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .menu-brand-title {
+            font-family: 'Oswald', sans-serif;
+            color: white;
+            font-size: 1.35rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .app-sidebar.collapsed .menu-brand-header {
             display: none;
         }
 
         .nav-list {
-            width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 6px;
             flex: 1;
         }
 
         .nav-button {
-            width: 85%;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: white;
-            padding: 12px 16px;
-            margin: 6px 0;
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.85);
+            padding: 12px 14px;
             cursor: pointer;
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             border-radius: 12px;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
             gap: 14px;
             transition: all 0.2s ease;
             font-size: 1rem;
             white-space: nowrap;
-            overflow: hidden;
         }
 
-        .sidebar.collapsed .nav-button {
-            width: 52px;
-            height: 52px;
+        .app-sidebar.collapsed .nav-button {
+            width: 44px;
+            height: 44px;
             padding: 0;
             justify-content: center;
-            border-radius: 14px;
+            border-radius: 12px;
         }
 
-        .nav-button i { 
-            width: 22px; 
-            height: 22px; 
+        .nav-button i {
+            width: 22px;
+            height: 22px;
             flex-shrink: 0;
         }
 
-        .nav-button span {
-            transition: opacity 0.2s;
-        }
-
-        .sidebar.collapsed .nav-button span {
+        .app-sidebar.collapsed .nav-button span {
             display: none;
         }
 
-        .nav-button:hover { 
-            background: var(--hercules-lichtblauw); 
-            border-color: rgba(255,255,255,0.4); 
-            transform: translateY(-1px); 
+        .nav-button:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
         }
 
         .nav-button.active {
-            background: var(--wit);
-            color: var(--hercules-blauw);
-            border-color: var(--wit);
+            background: rgba(255, 255, 255, 0.22);
+            color: white;
             font-weight: 700;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
-        /* TOGGLE BUTTON (ONDERIN SIDEBAR) */
+        /* INKLAP KNOP ONDERIN MENU */
         .toggle-btn {
-            width: 85%;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            padding: 12px;
-            border-radius: 12px;
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.8);
+            padding: 12px 14px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
-            margin-top: auto;
-            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            border-radius: 10px;
+            transition: background 0.2s;
+            white-space: nowrap;
         }
 
-        .sidebar.collapsed .toggle-btn {
-            width: 52px;
-            height: 52px;
+        .app-sidebar.collapsed .toggle-btn {
+            width: 44px;
+            height: 44px;
             padding: 0;
-            border-radius: 14px;
+            justify-content: center;
         }
 
-        .sidebar.collapsed .toggle-btn span {
+        .app-sidebar.collapsed .toggle-btn span {
             display: none;
         }
 
         .toggle-btn:hover {
-            background: rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.12);
+            color: white;
         }
 
         /* --- CONTENT AREA --- */
         .main-content { 
-            margin-left: var(--sidebar-breedte); 
+            margin-left: calc(var(--left-rail-breedte) + var(--menu-breedte)); 
             flex: 1; 
             padding: 40px; 
             display: flex; 
             justify-content: center;
-            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .main-content.expanded {
-            margin-left: var(--sidebar-ingeklapt);
+            margin-left: calc(var(--left-rail-breedte) + var(--menu-ingeklapt));
         }
 
         .container { width: 100%; max-width: 900px; }
 
-        .page-section { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .page-section { display: none; animation: fadeIn 0.25s ease-in-out; }
         .page-section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
         .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.06); margin-bottom: 35px; border: 1px solid #eaeaea; }
         .card-header { 
@@ -216,7 +252,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* VS WEDSTRIJD KAART (GROTERE SPELERNAMEN) */
         .vs-team-name {
             width: 38%;
             font-weight: 900;
@@ -225,7 +260,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* STAND TABEL */
         .stand-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
         .stand-table th { background: #f8f9fa; padding: 14px 12px; text-align: left; font-weight: 900; color: var(--hercules-blauw); border-bottom: 2px solid #eee; font-family: 'Oswald', sans-serif; }
         .stand-table td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
@@ -243,7 +277,6 @@
             font-weight: 900;
         }
 
-        /* TOPSCORERS STYLING */
         .score-row { 
             display: flex; 
             justify-content: space-between; 
@@ -260,7 +293,6 @@
             font-size: 1.1rem;
         }
 
-        /* OEFENINGEN LIJST */
         .exercise-list { list-style: none; padding: 0; margin: 0; }
         .exercise-item { 
             display: flex; 
@@ -275,14 +307,12 @@
         .exercise-item:last-child { border-bottom: none; }
         .exercise-count { background: var(--hercules-blauw); color: white; padding: 5px 15px; border-radius: 20px; font-family: 'Oswald'; font-size: 0.85rem; }
 
-        /* WEDSTRIJD STYLES */
         .match-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 25px; border-bottom: 1px solid #f0f0f0; transition: background 0.15s; }
         .match-row:hover { background: #fafbfc; }
         .m-date { font-weight: 900; color: var(--hercules-blauw); width: 110px; font-size: 0.85rem; font-family: 'Oswald', sans-serif; }
         .m-teams { flex: 1; text-align: center; font-weight: 700; font-size: 0.95rem; padding: 0 10px; }
         .m-time { font-family: 'Oswald'; background: var(--hercules-blauw); color: white; padding: 6px 14px; border-radius: 8px; min-width: 55px; text-align: center; }
 
-        /* TRAINING STYLES (HERSTELD EN GEFIXT) */
         .training-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
         .t-card { 
             background: #f8fafc; 
@@ -294,7 +324,6 @@
         }
         .t-day { font-family: 'Oswald', sans-serif; color: var(--hercules-blauw); font-size: 1.4rem; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* VOETBAL.NL KNOP */
         .v-button-container { text-align: center; padding: 20px; background: #f8f9fa; border-top: 1px solid #eee; }
         .v-button { display: inline-flex; align-items: center; gap: 8px; background: var(--hercules-blauw); color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: 900; text-transform: uppercase; font-size: 0.9rem; transition: all 0.2s ease; }
         .v-button:hover { background: var(--hercules-lichtblauw); transform: translateY(-2px); }
@@ -303,7 +332,9 @@
 
         @media (max-width: 900px) {
             body { flex-direction: column; }
-            .sidebar { position: relative; width: 100% !important; height: auto; border-right: none; border-bottom: 4px solid var(--hercules-lichtblauw); padding: 20px 0; }
+            .app-sidebar { position: relative; height: auto; width: 100%; box-shadow: none; }
+            .rail-left { display: none; }
+            .menu-panel { width: 100% !important; border-right: none; border-bottom: 4px solid var(--hercules-lichtblauw); }
             .main-content { margin-left: 0 !important; padding: 20px 12px; }
             .match-row { padding: 15px 12px; flex-direction: column; gap: 10px; text-align: center; }
             .m-date { width: auto; }
@@ -315,36 +346,53 @@
 </head>
 <body>
 
-    <!-- SIDEBAR -->
-    <nav class="sidebar" id="sidebar">
-        <img src="logo.png" alt="Hercules Logo" class="sidebar-logo">
-        <div class="sidebar-title">USV HERCULES <span style="color:var(--wit)">15-4</span></div>
-        
-        <div class="nav-list">
-            <button class="nav-button active" onclick="showPage('home', this)">
-                <i data-lucide="home"></i> <span>Home</span>
-            </button>
-            <button class="nav-button" onclick="showPage('wedstrijden', this)">
-                <i data-lucide="trophy"></i> <span>Wedstrijden & Stand</span>
-            </button>
-            <button class="nav-button" onclick="showPage('topscorers', this)">
-                <i data-lucide="target"></i> <span>Topscorers</span>
-            </button>
-            <button class="nav-button" onclick="showPage('trainingen', this)">
-                <i data-lucide="calendar"></i> <span>Trainingen</span>
-            </button>
-            <button class="nav-button" onclick="showPage('nieuwsbrief', this)">
-                <i data-lucide="newspaper"></i> <span>Nieuwsbrief</span>
-            </button>
+    <!-- MAGISTER-STIJL SIDEBAR MET HERCULES LOGO EN KLEUREN -->
+    <aside class="app-sidebar" id="appSidebar">
+        <!-- 1. Vaste Donkere Linker Rail -->
+        <div class="rail-left">
+            <img src="logo.png" alt="Hercules Logo" class="rail-logo">
+            <div class="rail-bottom-icons">
+                <button class="rail-icon-btn" title="Favorieten"><i data-lucide="star"></i></button>
+                <button class="rail-icon-btn" title="Meldingen"><i data-lucide="bell"></i></button>
+                <button class="rail-icon-btn" title="Instellingen"><i data-lucide="user-cog"></i></button>
+            </div>
         </div>
 
-        <button class="toggle-btn" onclick="toggleSidebar()">
-            <i data-lucide="panel-left-close" id="toggle-icon"></i>
-            <span>Inklappen</span>
-        </button>
-    </nav>
+        <!-- 2. Menu Kolom met Hercules Branding -->
+        <div class="menu-panel">
+            <div>
+                <div class="menu-brand-header">
+                    <img src="logo.png" alt="Hercules Logo" class="menu-brand-logo">
+                    <span class="menu-brand-title">Hercules 15-4</span>
+                </div>
+                <div class="nav-list">
+                    <button class="nav-button active" onclick="showPage('home', this)">
+                        <i data-lucide="home"></i> <span>Start</span>
+                    </button>
+                    <button class="nav-button" onclick="showPage('wedstrijden', this)">
+                        <i data-lucide="trophy"></i> <span>Wedstrijden & Stand</span>
+                    </button>
+                    <button class="nav-button" onclick="showPage('topscorers', this)">
+                        <i data-lucide="target"></i> <span>Topscorers</span>
+                    </button>
+                    <button class="nav-button" onclick="showPage('trainingen', this)">
+                        <i data-lucide="calendar"></i> <span>Trainingen</span>
+                    </button>
+                    <button class="nav-button" onclick="showPage('nieuwsbrief', this)">
+                        <i data-lucide="newspaper"></i> <span>Nieuwsbrief</span>
+                    </button>
+                </div>
+            </div>
 
-    <!-- CONTENT -->
+            <!-- Inklapknop (Zoals << Inklappen in Magister) -->
+            <button class="toggle-btn" onclick="toggleSidebar()">
+                <i data-lucide="chevrons-left" id="toggle-icon"></i>
+                <span>Inklappen</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- CONTENT AREA -->
     <main class="main-content" id="mainContent">
         <div class="container">
 
@@ -505,7 +553,7 @@
         }
 
         function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
+            const sidebar = document.getElementById('appSidebar');
             const mainContent = document.getElementById('mainContent');
             const toggleIcon = document.getElementById('toggle-icon');
 
@@ -513,18 +561,16 @@
             mainContent.classList.toggle('expanded');
 
             if (sidebar.classList.contains('collapsed')) {
-                toggleIcon.setAttribute('data-lucide', 'panel-left-open');
+                toggleIcon.setAttribute('data-lucide', 'chevrons-right');
             } else {
-                toggleIcon.setAttribute('data-lucide', 'panel-left-close');
+                toggleIcon.setAttribute('data-lucide', 'chevrons-left');
             }
             lucide.createIcons();
         }
 
-        // Iconen & Service Worker inladen
         window.onload = function() {
             lucide.createIcons();
 
-            // AUTOMATISCHE REGISTRATIE VOOR TELEFOON APP (SERVICE WORKER)
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('sw.js')
                     .then(() => console.log('App Service Worker succesvol actief!'))
