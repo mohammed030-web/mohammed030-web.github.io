@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USV Hercules | HERCULES JO15-4</title>
+    <title>USV Hercules | HERCULES 15-4</title>
 
     <!-- PWA INSTELLINGEN (VOOR TELEFOON APP) -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#003366">
+    <meta name="theme-color" content="#002b49">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Hercules JO15-4">
-    <link rel="apple-touch-icon" href="hercules-logo.png">
+    <meta name="apple-mobile-web-app-title" content="Hercules 15-4">
+    <link rel="apple-touch-icon" href="logo.png">
 
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --hercules-donkerblauw: #003366;
-            --hercules-blauw: #0055a5;
+            --hercules-blauw: #002b49;
+            --hercules-lichtblauw: #00406c;
             --achtergrond: #f4f7f9;
             --sidebar-breedte: 260px;
+            --sidebar-ingeklapt: 80px;
             --wit: #ffffff;
             --rand-kleur: #e5e7eb;
         }
@@ -33,63 +34,167 @@
         /* --- SIDEBAR --- */
         .sidebar {
             width: var(--sidebar-breedte);
-            background: var(--hercules-donkerblauw);
+            background: var(--hercules-blauw);
             color: white;
             position: fixed;
             height: 100%;
-            border-right: 6px solid var(--hercules-blauw);
+            border-right: 4px solid var(--hercules-lichtblauw);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 30px;
+            padding-top: 25px;
+            padding-bottom: 20px;
             z-index: 100;
             box-shadow: 4px 0 15px rgba(0,0,0,0.15);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .sidebar img { width: 110px; margin-bottom: 15px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
-        
+        .sidebar.collapsed {
+            width: var(--sidebar-ingeklapt);
+        }
+
+        .sidebar-logo {
+            width: 100px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            transition: width 0.3s;
+        }
+
+        .sidebar.collapsed .sidebar-logo {
+            width: 50px;
+            margin-bottom: 25px;
+        }
+
         .sidebar-title { 
             font-family: 'Oswald', sans-serif; 
-            font-size: 1.4rem; 
+            font-size: 1.3rem; 
             margin-bottom: 25px; 
             text-align: center; 
             text-transform: uppercase; 
             color: var(--wit); 
             letter-spacing: 0.5px;
+            white-space: nowrap;
+            opacity: 1;
+            transition: opacity 0.2s ease;
+        }
+
+        .sidebar.collapsed .sidebar-title {
+            display: none;
+        }
+
+        .nav-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
         }
 
         .nav-button {
             width: 85%;
-            background: var(--hercules-blauw);
-            border: 2px solid rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             color: white;
             padding: 12px 16px;
-            margin: 5px 0;
+            margin: 6px 0;
             cursor: pointer;
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: flex-start;
+            gap: 14px;
             transition: all 0.2s ease;
             font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
-        .nav-button i { width: 18px; height: 18px; }
+        .sidebar.collapsed .nav-button {
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            justify-content: center;
+            border-radius: 14px;
+        }
 
-        .nav-button:hover { background: #002244; border-color: rgba(255,255,255,0.4); transform: translateY(-1px); }
+        .nav-button i { 
+            width: 22px; 
+            height: 22px; 
+            flex-shrink: 0;
+        }
+
+        .nav-button span {
+            transition: opacity 0.2s;
+        }
+
+        .sidebar.collapsed .nav-button span {
+            display: none;
+        }
+
+        .nav-button:hover { 
+            background: var(--hercules-lichtblauw); 
+            border-color: rgba(255,255,255,0.4); 
+            transform: translateY(-1px); 
+        }
 
         .nav-button.active {
             background: var(--wit);
-            color: var(--hercules-donkerblauw);
+            color: var(--hercules-blauw);
             border-color: var(--wit);
             font-weight: 700;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
+        /* TOGGLE BUTTON (ONDERIN SIDEBAR) */
+        .toggle-btn {
+            width: 85%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            margin-top: auto;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar.collapsed .toggle-btn {
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            border-radius: 14px;
+        }
+
+        .sidebar.collapsed .toggle-btn span {
+            display: none;
+        }
+
+        .toggle-btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
         /* --- CONTENT AREA --- */
-        .main-content { margin-left: var(--sidebar-breedte); flex: 1; padding: 40px; display: flex; justify-content: center; }
+        .main-content { 
+            margin-left: var(--sidebar-breedte); 
+            flex: 1; 
+            padding: 40px; 
+            display: flex; 
+            justify-content: center;
+            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .main-content.expanded {
+            margin-left: var(--sidebar-ingeklapt);
+        }
+
         .container { width: 100%; max-width: 900px; }
 
         .page-section { display: none; animation: fadeIn 0.3s ease-in-out; }
@@ -98,9 +203,9 @@
 
         .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.06); margin-bottom: 35px; border: 1px solid #eaeaea; }
         .card-header { 
-            background: var(--hercules-donkerblauw); 
+            background: var(--hercules-blauw); 
             color: white; 
-            padding: 16px 20px; 
+            padding: 18px 20px; 
             font-family: 'Oswald', sans-serif; 
             font-size: 1.3rem; 
             text-transform: uppercase; 
@@ -111,20 +216,29 @@
             letter-spacing: 0.5px;
         }
 
+        /* VS WEDSTRIJD KAART (GROTERE SPELERNAMEN) */
+        .vs-team-name {
+            width: 38%;
+            font-weight: 900;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
         /* STAND TABEL */
         .stand-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-        .stand-table th { background: #f8f9fa; padding: 14px 12px; text-align: left; font-weight: 900; color: var(--hercules-donkerblauw); border-bottom: 2px solid #eee; font-family: 'Oswald', sans-serif; }
+        .stand-table th { background: #f8f9fa; padding: 14px 12px; text-align: left; font-weight: 900; color: var(--hercules-blauw); border-bottom: 2px solid #eee; font-family: 'Oswald', sans-serif; }
         .stand-table td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
         .stand-table tr:hover td { background-color: #fafbfc; }
-        .stand-table tr.highlight { background-color: #eaf2fb; font-weight: 900; }
-        .stand-table tr.highlight td { color: var(--hercules-donkerblauw); }
+        .stand-table tr.highlight { background-color: #e6f0f7; font-weight: 900; }
+        .stand-table tr.highlight td { color: var(--hercules-blauw); }
 
         .badge-club {
             background: var(--hercules-blauw);
             color: white;
             font-size: 0.7rem;
-            padding: 2px 6px;
-            border-radius: 4px;
+            padding: 3px 8px;
+            border-radius: 6px;
             margin-left: 6px;
             font-weight: 900;
         }
@@ -165,57 +279,73 @@
         .match-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 25px; border-bottom: 1px solid #f0f0f0; transition: background 0.15s; }
         .match-row:hover { background: #fafbfc; }
         .m-date { font-weight: 900; color: var(--hercules-blauw); width: 110px; font-size: 0.85rem; font-family: 'Oswald', sans-serif; }
-        .m-teams { flex: 1; text-align: center; font-weight: 700; font-size: 0.9rem; padding: 0 10px; }
-        .m-time { font-family: 'Oswald'; background: var(--hercules-donkerblauw); color: white; padding: 6px 14px; border-radius: 8px; min-width: 55px; text-align: center; }
+        .m-teams { flex: 1; text-align: center; font-weight: 700; font-size: 0.95rem; padding: 0 10px; }
+        .m-time { font-family: 'Oswald'; background: var(--hercules-blauw); color: white; padding: 6px 14px; border-radius: 8px; min-width: 55px; text-align: center; }
 
-        /* TRAINING STYLES */
+        /* TRAINING STYLES (HERSTELD EN GEFIXT) */
         .training-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
-        .t-card { background: #f9f9f9; padding: 22px; border-radius: 15px; text-align: center; border-left: 5px solid var(--hercules-blauw); box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
-        .t-day { font-family: 'Oswald'; color: var(--hercules-donkerblauw); font-size: 1.3rem; margin-bottom: 5px; text-transform: uppercase; }
+        .t-card { 
+            background: #f8fafc; 
+            padding: 22px; 
+            border-radius: 16px; 
+            text-align: center; 
+            border-left: 6px solid var(--hercules-blauw); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
+        }
+        .t-day { font-family: 'Oswald', sans-serif; color: var(--hercules-blauw); font-size: 1.4rem; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         /* VOETBAL.NL KNOP */
         .v-button-container { text-align: center; padding: 20px; background: #f8f9fa; border-top: 1px solid #eee; }
-        .v-button { display: inline-flex; align-items: center; gap: 8px; background: var(--hercules-donkerblauw); color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: 900; text-transform: uppercase; font-size: 0.9rem; transition: all 0.2s ease; }
-        .v-button:hover { background: var(--hercules-blauw); transform: translateY(-2px); }
+        .v-button { display: inline-flex; align-items: center; gap: 8px; background: var(--hercules-blauw); color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: 900; text-transform: uppercase; font-size: 0.9rem; transition: all 0.2s ease; }
+        .v-button:hover { background: var(--hercules-lichtblauw); transform: translateY(-2px); }
 
         footer { text-align: center; padding: 40px; color: #888; font-size: 0.85rem; line-height: 1.6; }
 
         @media (max-width: 900px) {
             body { flex-direction: column; }
-            .sidebar { position: relative; width: 100%; height: auto; border-right: none; border-bottom: 6px solid var(--hercules-blauw); padding: 20px 0; }
-            .main-content { margin-left: 0; padding: 20px 12px; }
+            .sidebar { position: relative; width: 100% !important; height: auto; border-right: none; border-bottom: 4px solid var(--hercules-lichtblauw); padding: 20px 0; }
+            .main-content { margin-left: 0 !important; padding: 20px 12px; }
             .match-row { padding: 15px 12px; flex-direction: column; gap: 10px; text-align: center; }
             .m-date { width: auto; }
             .training-grid { grid-template-columns: 1fr; }
             .stand-table { display: block; overflow-x: auto; white-space: nowrap; }
+            .toggle-btn { display: none; }
         }
     </style>
 </head>
 <body>
 
     <!-- SIDEBAR -->
-    <nav class="sidebar">
-        <img src="hercules-logo.png" alt="Hercules Logo">
-        <div class="sidebar-title">USV HERCULES <span style="color:var(--wit)">JO15-4</span></div>
-        <button class="nav-button active" onclick="showPage('home', this)">
-            <i data-lucide="home"></i> Home
-        </button>
-        <button class="nav-button" onclick="showPage('wedstrijden', this)">
-            <i data-lucide="trophy"></i> Wedstrijden & Stand
-        </button>
-        <button class="nav-button" onclick="showPage('topscorers', this)">
-            <i data-lucide="target"></i> Topscorers
-        </button>
-        <button class="nav-button" onclick="showPage('trainingen', this)">
-            <i data-lucide="calendar"></i> Trainingen
-        </button>
-        <button class="nav-button" onclick="showPage('nieuwsbrief', this)">
-            <i data-lucide="newspaper"></i> Nieuwsbrief
+    <nav class="sidebar" id="sidebar">
+        <img src="logo.png" alt="Hercules Logo" class="sidebar-logo">
+        <div class="sidebar-title">USV HERCULES <span style="color:var(--wit)">15-4</span></div>
+        
+        <div class="nav-list">
+            <button class="nav-button active" onclick="showPage('home', this)">
+                <i data-lucide="home"></i> <span>Home</span>
+            </button>
+            <button class="nav-button" onclick="showPage('wedstrijden', this)">
+                <i data-lucide="trophy"></i> <span>Wedstrijden & Stand</span>
+            </button>
+            <button class="nav-button" onclick="showPage('topscorers', this)">
+                <i data-lucide="target"></i> <span>Topscorers</span>
+            </button>
+            <button class="nav-button" onclick="showPage('trainingen', this)">
+                <i data-lucide="calendar"></i> <span>Trainingen</span>
+            </button>
+            <button class="nav-button" onclick="showPage('nieuwsbrief', this)">
+                <i data-lucide="newspaper"></i> <span>Nieuwsbrief</span>
+            </button>
+        </div>
+
+        <button class="toggle-btn" onclick="toggleSidebar()">
+            <i data-lucide="panel-left-close" id="toggle-icon"></i>
+            <span>Inklappen</span>
         </button>
     </nav>
 
     <!-- CONTENT -->
-    <main class="main-content">
+    <main class="main-content" id="mainContent">
         <div class="container">
 
             <!-- HOME -->
@@ -238,9 +368,9 @@
                     </div>
                     <div style="padding: 40px 20px; text-align: center;">
                         <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-                            <div style="width: 35%; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; color: var(--hercules-blauw);">Hercules O15-4</div>
-                            <div style="background: var(--hercules-donkerblauw); color: white; padding: 15px 25px; border-radius: 18px; font-family: 'Oswald'; font-size: 2rem; line-height:1; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">VS</div>
-                            <div style="width: 35%; font-weight: 900; font-size: 0.95rem; text-transform: uppercase;">Hoogland O15-4</div>
+                            <div class="vs-team-name" style="color: var(--hercules-blauw); text-align: right;">Hercules 15-4</div>
+                            <div style="background: var(--hercules-blauw); color: white; padding: 16px 26px; border-radius: 18px; font-family: 'Oswald'; font-size: 2.2rem; line-height:1; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">VS</div>
+                            <div class="vs-team-name" style="text-align: left;">Hoogland 15-4</div>
                         </div>
                         <p style="margin-top: 25px; color: #888; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Zaterdag 31 Oktober 2026 - 08:30 uur (THUIS)</p>
                     </div>
@@ -254,7 +384,7 @@
                         <i data-lucide="newspaper"></i> Nieuwsbrief
                     </div>
                     <div style="padding: 30px;">
-                        <h2 style="font-family:'Oswald'; color:var(--hercules-donkerblauw); margin-top:0;">Welkom bij de Nieuwsbrief</h2>
+                        <h2 style="font-family:'Oswald'; color:var(--hercules-blauw); margin-top:0;">Welkom bij de Nieuwsbrief</h2>
                         <p style="color:#555; line-height:1.6;">Hier kun je wekelijks updates en verslagen plaatsen.</p>
                     </div>
                 </div>
@@ -272,21 +402,21 @@
                                 <tr><th>#</th><th>Team</th><th>G</th><th>W</th><th>GL</th><th>V</th><th>P</th><th>+</th><th>-</th></tr>
                             </thead>
                             <tbody>
-                                <tr><td>1</td><td>Amsvorde O15-2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                                <tr><td>2</td><td>DOSC O15-3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>1</td><td>Amsvorde 15-2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>2</td><td>DOSC 15-3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
                                 <tr class="highlight">
-                                    <td>3</td><td>Hercules O15-4 <span class="badge-club">ONS TEAM</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+                                    <td>3</td><td>Hercules 15-4 <span class="badge-club">ONS TEAM</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
                                 </tr>
-                                <tr><td>4</td><td>Hoogland O15-4</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                                <tr><td>5</td><td>Jonathan O15-6</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                                <tr><td>6</td><td>Roda '46 O15-4</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                                <tr><td>7</td><td>Soest SO O15-3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                                <tr><td>8</td><td>VOP O15-2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>4</td><td>Hoogland 15-4</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>5</td><td>Jonathan 15-6</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>6</td><td>Roda '46 15-4</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>7</td><td>Soest SO 15-3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>8</td><td>VOP 15-2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="v-button-container">
-                        <a href="https://www.voetbal.nl" target="_blank" class="v-button">Bekijk op Voetbal.nl <i data-lucide="external-link" style="width:16px;"></i></a>
+                        <a href="https://m.voetbal.nl" target="_blank" class="v-button">Open Voetbal.nl App <i data-lucide="external-link" style="width:16px;"></i></a>
                     </div>
                 </div>
 
@@ -294,13 +424,13 @@
                     <div class="card-header">
                         <i data-lucide="calendar"></i> Programma Najaar 2026
                     </div>
-                    <div class="match-row"><span class="m-date">ZAT 31 OKT</span><span class="m-teams">Hercules O15-4 vs Hoogland O15-4<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">08:30</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 7 NOV</span><span class="m-teams">DOSC O15-3 vs Hercules O15-4<br><small style="color:#777;">(UIT)</small></span><span class="m-time">15:00</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 14 NOV</span><span class="m-teams">Hercules O15-4 vs Soest SO O15-3<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">11:00</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 21 NOV</span><span class="m-teams">Hercules O15-4 vs Jonathan O15-6<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">10:45</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 28 NOV</span><span class="m-teams">VOP O15-2 vs Hercules O15-4<br><small style="color:#777;">(UIT)</small></span><span class="m-time">13:30</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 5 DEC</span><span class="m-teams">Hercules O15-4 vs Roda '46 O15-4<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">11:00</span></div>
-                    <div class="match-row" style="border:none;"><span class="m-date">ZAT 12 DEC</span><span class="m-teams">Amsvorde O15-2 vs Hercules O15-4<br><small style="color:#777;">(UIT)</small></span><span class="m-time">10:30</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 31 OKT</span><span class="m-teams">Hercules 15-4 vs Hoogland 15-4<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">08:30</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 7 NOV</span><span class="m-teams">DOSC 15-3 vs Hercules 15-4<br><small style="color:#777;">(UIT)</small></span><span class="m-time">15:00</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 14 NOV</span><span class="m-teams">Hercules 15-4 vs Soest SO 15-3<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">11:00</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 21 NOV</span><span class="m-teams">Hercules 15-4 vs Jonathan 15-6<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">10:45</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 28 NOV</span><span class="m-teams">VOP 15-2 vs Hercules 15-4<br><small style="color:#777;">(UIT)</small></span><span class="m-time">13:30</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 5 DEC</span><span class="m-teams">Hercules 15-4 vs Roda '46 15-4<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">11:00</span></div>
+                    <div class="match-row" style="border:none;"><span class="m-date">ZAT 12 DEC</span><span class="m-teams">Amsvorde 15-2 vs Hercules 15-4<br><small style="color:#777;">(UIT)</small></span><span class="m-time">10:30</span></div>
                 </div>
             </section>
 
@@ -323,12 +453,18 @@
                         <i data-lucide="clock"></i> Trainingsuren
                     </div>
                     <div class="training-grid">
-                        <div class="t-card"><div class="t-day">Dinsdag</div>17:45 - 19:00</div>
-                        <div class="t-card"><div class="t-day">Vrijdag</div>18:00 - 19:15</div>
+                        <div class="t-card">
+                            <div class="t-day">Dinsdag</div>
+                            <span style="font-weight:700; font-size:1.1rem; color:#444;">17:45 - 19:00</span>
+                        </div>
+                        <div class="t-card">
+                            <div class="t-day">Vrijdag</div>
+                            <span style="font-weight:700; font-size:1.1rem; color:#444;">18:00 - 19:15</span>
+                        </div>
                     </div>
-                    <div style="margin: 0 30px 20px 30px; padding: 15px; background: #eaf2fb; border-radius: 15px; border: 2px dashed var(--hercules-blauw); text-align: center;">
-                        <strong style="color: var(--hercules-donkerblauw); text-transform: uppercase;">Belangrijk voor deze week:</strong><br>
-                        <span style="font-size: 0.9rem;">Niks speciaals deze week.</span>
+                    <div style="margin: 0 30px 20px 30px; padding: 15px; background: #e6f0f7; border-radius: 15px; border: 2px dashed var(--hercules-blauw); text-align: center;">
+                        <strong style="color: var(--hercules-blauw); text-transform: uppercase;">Belangrijk voor deze week:</strong><br>
+                        <span style="font-size: 0.9rem; color: #555;">Niks speciaals deze week.</span>
                     </div>
                     <p style="text-align:center; color:var(--hercules-blauw); font-weight:900; padding-bottom:20px; text-transform:uppercase; margin:0;">Verzamelen: 15 minuten voor aanvang</p>
                 </div>
@@ -366,6 +502,22 @@
             if(btn) btn.classList.add('active');
 
             window.scrollTo(0, 0);
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            const toggleIcon = document.getElementById('toggle-icon');
+
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded');
+
+            if (sidebar.classList.contains('collapsed')) {
+                toggleIcon.setAttribute('data-lucide', 'panel-left-open');
+            } else {
+                toggleIcon.setAttribute('data-lucide', 'panel-left-close');
+            }
+            lucide.createIcons();
         }
 
         // Iconen & Service Worker inladen
