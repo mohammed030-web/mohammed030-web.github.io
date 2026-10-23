@@ -24,7 +24,7 @@
             --achtergrond: #f4f7f9;
             --left-rail-breedte: 65px;
             --menu-breedte: 220px;
-            --menu-ingeklapt: 60px;
+            --menu-ingeklapt: 65px;
             --wit: #ffffff;
         }
 
@@ -32,7 +32,7 @@
         * { box-sizing: border-box; }
         body { font-family: 'Roboto', sans-serif; background: var(--achtergrond); margin: 0; display: flex; min-height: 100vh; color: #333; overflow-x: hidden; }
 
-        /* --- MAGISTER-STIJL DUBBELE SIDEBAR --- */
+        /* --- DUBBELE SIDEBAR (PERFECT FIX) --- */
         .app-sidebar {
             display: flex;
             position: fixed;
@@ -41,55 +41,31 @@
             box-shadow: 4px 0 15px rgba(0,0,0,0.15);
         }
 
-        /* 1. Vaste Donkere Rail (Uiterst Links) */
+        /* 1. Vaste Donkere Rail (Links) */
         .rail-left {
             width: var(--left-rail-breedte);
             background: var(--hercules-donker);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 15px 0;
-            justify-content: space-between;
+            padding-top: 15px;
             border-right: 1px solid rgba(255,255,255,0.08);
             z-index: 2;
         }
 
         .rail-logo {
             width: 42px;
+            height: auto;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
-        .rail-bottom-icons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .rail-icon-btn {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .rail-icon-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        /* 2. Inklapbare Menu Kolom (Ernaast) */
+        /* 2. Inklapbare Menu Kolom */
         .menu-panel {
             width: var(--menu-breedte);
             background: var(--hercules-blauw);
             display: flex;
             flex-direction: column;
-            padding: 20px 10px;
+            padding: 15px 0 20px 0;
             justify-content: space-between;
             transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
@@ -98,22 +74,16 @@
 
         .app-sidebar.collapsed .menu-panel {
             width: var(--menu-ingeklapt);
-            align-items: center;
         }
 
-        /* HERCULES LOGO / HEADER IN DE MENU KOLOM */
+        /* VASTE HEADER WAARDOOR NIETS GEAANPAST WORDT AAN DE Y-AS */
         .menu-brand-header {
+            height: 48px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 5px 10px 22px 10px;
+            padding-left: 18px;
+            margin-bottom: 10px;
             white-space: nowrap;
-        }
-
-        .menu-brand-logo {
-            width: 36px;
-            height: auto;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
         .menu-brand-title {
@@ -122,10 +92,12 @@
             font-size: 1.35rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            transition: opacity 0.2s;
         }
 
-        .app-sidebar.collapsed .menu-brand-header {
-            display: none;
+        .app-sidebar.collapsed .menu-brand-title {
+            opacity: 0;
+            pointer-events: none;
         }
 
         .nav-list {
@@ -133,42 +105,50 @@
             flex-direction: column;
             gap: 6px;
             flex: 1;
+            padding: 0 11px;
         }
 
         .nav-button {
             width: 100%;
+            height: 46px;
             background: transparent;
             border: none;
             color: rgba(255,255,255,0.85);
-            padding: 12px 14px;
+            padding: 0;
             cursor: pointer;
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 14px;
-            transition: all 0.2s ease;
+            transition: background 0.2s ease, color 0.2s ease;
             font-size: 1rem;
             white-space: nowrap;
         }
 
-        .app-sidebar.collapsed .nav-button {
-            width: 44px;
-            height: 44px;
-            padding: 0;
+        /* VASTE ICOON-HOUDER VOOR PERFECTE X EN Y AS UITLIJNING */
+        .icon-box {
+            width: 43px;
+            height: 46px;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            border-radius: 12px;
-        }
-
-        .nav-button i {
-            width: 22px;
-            height: 22px;
             flex-shrink: 0;
         }
 
+        .nav-button i, .nav-button svg {
+            width: 22px !important;
+            height: 22px !important;
+        }
+
+        .nav-button span {
+            padding-left: 6px;
+            transition: opacity 0.2s ease;
+        }
+
         .app-sidebar.collapsed .nav-button span {
-            display: none;
+            opacity: 0;
+            pointer-events: none;
         }
 
         .nav-button:hover {
@@ -188,28 +168,23 @@
             background: transparent;
             border: none;
             color: rgba(255,255,255,0.8);
-            padding: 12px 14px;
+            height: 42px;
+            padding: 0;
+            margin: 0 11px;
             cursor: pointer;
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             display: flex;
             align-items: center;
-            gap: 10px;
             font-size: 0.95rem;
             border-radius: 10px;
             transition: background 0.2s;
             white-space: nowrap;
         }
 
-        .app-sidebar.collapsed .toggle-btn {
-            width: 44px;
-            height: 44px;
-            padding: 0;
-            justify-content: center;
-        }
-
         .app-sidebar.collapsed .toggle-btn span {
-            display: none;
+            opacity: 0;
+            pointer-events: none;
         }
 
         .toggle-btn:hover {
@@ -260,6 +235,7 @@
             letter-spacing: 0.5px;
         }
 
+        /* STAND TABEL */
         .stand-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
         .stand-table th { background: #f8f9fa; padding: 14px 12px; text-align: left; font-weight: 900; color: var(--hercules-blauw); border-bottom: 2px solid #eee; font-family: 'Oswald', sans-serif; }
         .stand-table td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
@@ -313,16 +289,28 @@
         .m-teams { flex: 1; text-align: center; font-weight: 700; font-size: 0.95rem; padding: 0 10px; }
         .m-time { font-family: 'Oswald'; background: var(--hercules-blauw); color: white; padding: 6px 14px; border-radius: 8px; min-width: 55px; text-align: center; }
 
+        /* TRAINING STYLES (GEFIXTE BLOKKEN) */
         .training-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
         .t-card { 
-            background: #f8fafc; 
-            padding: 22px; 
+            background: #ffffff; 
+            padding: 24px 20px; 
             border-radius: 16px; 
             text-align: center; 
-            border-left: 6px solid var(--hercules-blauw); 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
         }
-        .t-day { font-family: 'Oswald', sans-serif; color: var(--hercules-blauw); font-size: 1.4rem; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .t-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--hercules-blauw);
+        }
+        .t-day { font-family: 'Oswald', sans-serif; color: var(--hercules-blauw); font-size: 1.5rem; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         .v-button-container { text-align: center; padding: 20px; background: #f8f9fa; border-top: 1px solid #eee; }
         .v-button { display: inline-flex; align-items: center; gap: 8px; background: var(--hercules-blauw); color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: 900; text-transform: uppercase; font-size: 0.9rem; transition: all 0.2s ease; }
@@ -334,7 +322,7 @@
             body { flex-direction: column; }
             .app-sidebar { position: relative; height: auto; width: 100%; box-shadow: none; }
             .rail-left { display: none; }
-            .menu-panel { width: 100% !important; border-right: none; border-bottom: 4px solid var(--hercules-lichtblauw); }
+            .menu-panel { width: 100% !important; border-right: none; border-bottom: 4px solid var(--hercules-lichtblauw); padding: 10px 0; }
             .main-content { margin-left: 0 !important; padding: 20px 12px; }
             .match-row { padding: 15px 12px; flex-direction: column; gap: 10px; text-align: center; }
             .m-date { width: auto; }
@@ -346,47 +334,46 @@
 </head>
 <body>
 
-    <!-- MAGISTER-STIJL SIDEBAR MET HERCULES LOGO EN KLEUREN -->
+    <!-- DUBBELE SIDEBAR -->
     <aside class="app-sidebar" id="appSidebar">
-        <!-- 1. Vaste Donkere Linker Rail -->
+        <!-- 1. Vaste Rail (Links) -->
         <div class="rail-left">
             <img src="logo.png" alt="Hercules Logo" class="rail-logo">
-            <div class="rail-bottom-icons">
-                <button class="rail-icon-btn" title="Favorieten"><i data-lucide="star"></i></button>
-                <button class="rail-icon-btn" title="Meldingen"><i data-lucide="bell"></i></button>
-                <button class="rail-icon-btn" title="Instellingen"><i data-lucide="user-cog"></i></button>
-            </div>
         </div>
 
-        <!-- 2. Menu Kolom met Hercules Branding -->
+        <!-- 2. Inklapbare Menu Kolom -->
         <div class="menu-panel">
             <div>
                 <div class="menu-brand-header">
-                    <img src="logo.png" alt="Hercules Logo" class="menu-brand-logo">
                     <span class="menu-brand-title">Hercules 15-4</span>
                 </div>
                 <div class="nav-list">
                     <button class="nav-button active" onclick="showPage('home', this)">
-                        <i data-lucide="home"></i> <span>Start</span>
+                        <div class="icon-box"><i data-lucide="home"></i></div>
+                        <span>Start</span>
                     </button>
                     <button class="nav-button" onclick="showPage('wedstrijden', this)">
-                        <i data-lucide="trophy"></i> <span>Wedstrijden & Stand</span>
+                        <div class="icon-box"><i data-lucide="trophy"></i></div>
+                        <span>Wedstrijden & Stand</span>
                     </button>
                     <button class="nav-button" onclick="showPage('topscorers', this)">
-                        <i data-lucide="target"></i> <span>Topscorers</span>
+                        <div class="icon-box"><i data-lucide="target"></i></div>
+                        <span>Topscorers</span>
                     </button>
                     <button class="nav-button" onclick="showPage('trainingen', this)">
-                        <i data-lucide="calendar"></i> <span>Trainingen</span>
+                        <div class="icon-box"><i data-lucide="calendar"></i></div>
+                        <span>Trainingen</span>
                     </button>
                     <button class="nav-button" onclick="showPage('nieuwsbrief', this)">
-                        <i data-lucide="newspaper"></i> <span>Nieuwsbrief</span>
+                        <div class="icon-box"><i data-lucide="newspaper"></i></div>
+                        <span>Nieuwsbrief</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Inklapknop (Zoals << Inklappen in Magister) -->
+            <!-- Inklapknop -->
             <button class="toggle-btn" onclick="toggleSidebar()">
-                <i data-lucide="chevrons-left" id="toggle-icon"></i>
+                <div class="icon-box"><i data-lucide="chevrons-left" id="toggle-icon"></i></div>
                 <span>Inklappen</span>
             </button>
         </div>
@@ -503,11 +490,11 @@
                     <div class="training-grid">
                         <div class="t-card">
                             <div class="t-day">Dinsdag</div>
-                            <span style="font-weight:700; font-size:1.1rem; color:#444;">17:45 - 19:00</span>
+                            <span style="font-weight:700; font-size:1.15rem; color:#002b49;">17:45 - 19:00</span>
                         </div>
                         <div class="t-card">
                             <div class="t-day">Vrijdag</div>
-                            <span style="font-weight:700; font-size:1.1rem; color:#444;">18:00 - 19:15</span>
+                            <span style="font-weight:700; font-size:1.15rem; color:#002b49;">18:00 - 19:15</span>
                         </div>
                     </div>
                     <div style="margin: 0 30px 20px 30px; padding: 15px; background: #e6f0f7; border-radius: 15px; border: 2px dashed var(--hercules-blauw); text-align: center;">
