@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.V. Overvecht De Dreef | DE DREEF 14-2</title>
+    <title>USV Hercules | HERCULES JO15-4</title>
+
+    <!-- PWA INSTELLINGEN (VOOR TELEFOON APP) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#003366">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Hercules JO15-4">
+    <link rel="apple-touch-icon" href="hercules-logo.png">
+
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --dreef-blauw: #0d061a;
-            --dreef-rood: #cc0000;
+            --hercules-donkerblauw: #003366;
+            --hercules-blauw: #0055a5;
             --achtergrond: #f4f7f9;
             --sidebar-breedte: 260px;
             --wit: #ffffff;
@@ -24,11 +33,11 @@
         /* --- SIDEBAR --- */
         .sidebar {
             width: var(--sidebar-breedte);
-            background: var(--dreef-rood);
+            background: var(--hercules-donkerblauw);
             color: white;
             position: fixed;
             height: 100%;
-            border-right: 6px solid var(--dreef-blauw);
+            border-right: 6px solid var(--hercules-blauw);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -51,7 +60,7 @@
 
         .nav-button {
             width: 85%;
-            background: var(--dreef-blauw);
+            background: var(--hercules-blauw);
             border: 2px solid rgba(255,255,255,0.15);
             color: white;
             padding: 12px 16px;
@@ -69,11 +78,11 @@
 
         .nav-button i { width: 18px; height: 18px; }
 
-        .nav-button:hover { background: #1a1a2e; border-color: rgba(255,255,255,0.4); transform: translateY(-1px); }
+        .nav-button:hover { background: #002244; border-color: rgba(255,255,255,0.4); transform: translateY(-1px); }
 
         .nav-button.active {
             background: var(--wit);
-            color: var(--dreef-rood);
+            color: var(--hercules-donkerblauw);
             border-color: var(--wit);
             font-weight: 700;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -89,7 +98,7 @@
 
         .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.06); margin-bottom: 35px; border: 1px solid #eaeaea; }
         .card-header { 
-            background: var(--dreef-rood); 
+            background: var(--hercules-donkerblauw); 
             color: white; 
             padding: 16px 20px; 
             font-family: 'Oswald', sans-serif; 
@@ -104,14 +113,14 @@
 
         /* STAND TABEL */
         .stand-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-        .stand-table th { background: #f8f9fa; padding: 14px 12px; text-align: left; font-weight: 900; color: var(--dreef-blauw); border-bottom: 2px solid #eee; font-family: 'Oswald', sans-serif; }
+        .stand-table th { background: #f8f9fa; padding: 14px 12px; text-align: left; font-weight: 900; color: var(--hercules-donkerblauw); border-bottom: 2px solid #eee; font-family: 'Oswald', sans-serif; }
         .stand-table td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
         .stand-table tr:hover td { background-color: #fafbfc; }
-        .stand-table tr.highlight { background-color: #fff4f4; font-weight: 900; }
-        .stand-table tr.highlight td { color: var(--dreef-rood); }
+        .stand-table tr.highlight { background-color: #eaf2fb; font-weight: 900; }
+        .stand-table tr.highlight td { color: var(--hercules-donkerblauw); }
 
         .badge-club {
-            background: var(--dreef-rood);
+            background: var(--hercules-blauw);
             color: white;
             font-size: 0.7rem;
             padding: 2px 6px;
@@ -132,7 +141,7 @@
         }
         .score-row:hover { background: #fafbfc; }
         .score-row span:last-child {
-            color: var(--dreef-rood);
+            color: var(--hercules-blauw);
             font-family: 'Oswald', sans-serif;
             font-size: 1.1rem;
         }
@@ -150,30 +159,30 @@
         }
         .exercise-item:hover { background: #fafbfc; }
         .exercise-item:last-child { border-bottom: none; }
-        .exercise-count { background: var(--dreef-rood); color: white; padding: 5px 15px; border-radius: 20px; font-family: 'Oswald'; font-size: 0.85rem; }
+        .exercise-count { background: var(--hercules-blauw); color: white; padding: 5px 15px; border-radius: 20px; font-family: 'Oswald'; font-size: 0.85rem; }
 
         /* WEDSTRIJD STYLES */
         .match-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 25px; border-bottom: 1px solid #f0f0f0; transition: background 0.15s; }
         .match-row:hover { background: #fafbfc; }
-        .m-date { font-weight: 900; color: var(--dreef-rood); width: 110px; font-size: 0.85rem; font-family: 'Oswald', sans-serif; }
+        .m-date { font-weight: 900; color: var(--hercules-blauw); width: 110px; font-size: 0.85rem; font-family: 'Oswald', sans-serif; }
         .m-teams { flex: 1; text-align: center; font-weight: 700; font-size: 0.9rem; padding: 0 10px; }
-        .m-time { font-family: 'Oswald'; background: var(--dreef-blauw); color: white; padding: 6px 14px; border-radius: 8px; min-width: 55px; text-align: center; }
+        .m-time { font-family: 'Oswald'; background: var(--hercules-donkerblauw); color: white; padding: 6px 14px; border-radius: 8px; min-width: 55px; text-align: center; }
 
         /* TRAINING STYLES */
         .training-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
-        .t-card { background: #f9f9f9; padding: 22px; border-radius: 15px; text-align: center; border-left: 5px solid var(--dreef-rood); box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
-        .t-day { font-family: 'Oswald'; color: var(--dreef-blauw); font-size: 1.3rem; margin-bottom: 5px; text-transform: uppercase; }
+        .t-card { background: #f9f9f9; padding: 22px; border-radius: 15px; text-align: center; border-left: 5px solid var(--hercules-blauw); box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .t-day { font-family: 'Oswald'; color: var(--hercules-donkerblauw); font-size: 1.3rem; margin-bottom: 5px; text-transform: uppercase; }
 
         /* VOETBAL.NL KNOP */
         .v-button-container { text-align: center; padding: 20px; background: #f8f9fa; border-top: 1px solid #eee; }
-        .v-button { display: inline-flex; align-items: center; gap: 8px; background: var(--dreef-blauw); color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: 900; text-transform: uppercase; font-size: 0.9rem; transition: all 0.2s ease; }
-        .v-button:hover { background: var(--dreef-rood); transform: translateY(-2px); }
+        .v-button { display: inline-flex; align-items: center; gap: 8px; background: var(--hercules-donkerblauw); color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: 900; text-transform: uppercase; font-size: 0.9rem; transition: all 0.2s ease; }
+        .v-button:hover { background: var(--hercules-blauw); transform: translateY(-2px); }
 
         footer { text-align: center; padding: 40px; color: #888; font-size: 0.85rem; line-height: 1.6; }
 
         @media (max-width: 900px) {
             body { flex-direction: column; }
-            .sidebar { position: relative; width: 100%; height: auto; border-right: none; border-bottom: 6px solid var(--dreef-blauw); padding: 20px 0; }
+            .sidebar { position: relative; width: 100%; height: auto; border-right: none; border-bottom: 6px solid var(--hercules-blauw); padding: 20px 0; }
             .main-content { margin-left: 0; padding: 20px 12px; }
             .match-row { padding: 15px 12px; flex-direction: column; gap: 10px; text-align: center; }
             .m-date { width: auto; }
@@ -186,8 +195,8 @@
 
     <!-- SIDEBAR -->
     <nav class="sidebar">
-        <img src="logo.png" alt="Logo">
-        <div class="sidebar-title">DE DREEF <span style="color:var(--wit)">14-2</span></div>
+        <img src="hercules-logo.png" alt="Hercules Logo">
+        <div class="sidebar-title">USV HERCULES <span style="color:var(--wit)">JO15-4</span></div>
         <button class="nav-button active" onclick="showPage('home', this)">
             <i data-lucide="home"></i> Home
         </button>
@@ -215,37 +224,25 @@
                     <div class="card-header">
                         <i data-lucide="megaphone"></i> MEDEDELING
                     </div>
-                    <div style="padding: 25px; display: flex; align-items: flex-start; gap: 20px;">
-                        <span style="font-size: 2rem; margin-top: 2px;">📢</span>
-                        <div style="font-weight: 400; font-size: 1rem; line-height: 1.6; color: #333;">
-                            <strong style="text-transform: uppercase;">AANKOMEND ZATERDAG:</strong><br>
-                            Beste ouders en jongens,<br>
-                            Aankomende zaterdag mogen we weer gaan strijden<br><br>
-                            <strong>Uitwedstrijd</strong><br>
-                            <strong>DVSU JO14-2</strong><br>
-                            <strong>Wedstrijd: 09:00</strong><br>
-                            <strong>Verzamelen: 08:00 bij De Dreef</strong><br><br>
-                            Omdat het een uitwedstrijd is, hebben we nodig:<br>
-                            🚗 Rijders<br>
-                            🚩 1 vlagger<br><br>
-                            Graag zo snel mogelijk aangeven wie kan helpen, zodat we alles op tijd kunnen regelen.<br><br>
-                            Selectie volgt nog<br><br>
-                            <strong>Trainer Julian 💪⚽</strong>
+                    <div style="padding: 25px; display: flex; align-items: center; gap: 20px;">
+                        <span style="font-size: 2rem;">📢</span>
+                        <div style="font-weight: 500; font-size: 1.05rem; color: #666;">
+                            Nog geen mededelingen.
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-header">
-                        <i data-lucide="award"></i> Laatste Resultaat
+                        <i data-lucide="award"></i> Eerstvolgende Wedstrijd
                     </div>
                     <div style="padding: 40px 20px; text-align: center;">
                         <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-                            <div style="width: 35%; font-weight: 900; font-size: 0.95rem; text-transform: uppercase;">DVSU JO14-2</div>
-                            <div style="background: var(--dreef-blauw); color: white; padding: 20px 30px; border-radius: 18px; font-family: 'Oswald'; font-size: 3.2rem; line-height:1; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">1 - 6</div>
-                            <div style="width: 35%; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; color: var(--dreef-rood);">SV Overvecht/De Dreef JO14-2</div>
+                            <div style="width: 35%; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; color: var(--hercules-blauw);">Hercules O15-4</div>
+                            <div style="background: var(--hercules-donkerblauw); color: white; padding: 15px 25px; border-radius: 18px; font-family: 'Oswald'; font-size: 2rem; line-height:1; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">VS</div>
+                            <div style="width: 35%; font-weight: 900; font-size: 0.95rem; text-transform: uppercase;">Hoogland O15-4</div>
                         </div>
-                        <p style="margin-top: 25px; color: #888; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Zaterdag 28 Maart - Uitwedstrijd</p>
+                        <p style="margin-top: 25px; color: #888; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Zaterdag 31 Oktober 2026 - 08:30 uur (THUIS)</p>
                     </div>
                 </div>
             </section>
@@ -257,8 +254,8 @@
                         <i data-lucide="newspaper"></i> Nieuwsbrief
                     </div>
                     <div style="padding: 30px;">
-                        <h2 style="font-family:'Oswald'; color:var(--dreef-blauw); margin-top:0;">Welkom bij de Nieuwsbrief</h2>
-                        <p style="color:#555; line-height:1.6;">Hier kun je wekelijks updates plaatsen.</p>
+                        <h2 style="font-family:'Oswald'; color:var(--hercules-donkerblauw); margin-top:0;">Welkom bij de Nieuwsbrief</h2>
+                        <p style="color:#555; line-height:1.6;">Hier kun je wekelijks updates en verslagen plaatsen.</p>
                     </div>
                 </div>
             </section>
@@ -267,7 +264,7 @@
             <section id="wedstrijden" class="page-section">
                 <div class="card">
                     <div class="card-header">
-                        <i data-lucide="list-ordered"></i> Ranglijst
+                        <i data-lucide="list-ordered"></i> Ranglijst (4e Klasse)
                     </div>
                     <div style="overflow-x: auto;">
                         <table class="stand-table">
@@ -275,37 +272,35 @@
                                 <tr><th>#</th><th>Team</th><th>G</th><th>W</th><th>GL</th><th>V</th><th>P</th><th>+</th><th>-</th></tr>
                             </thead>
                             <tbody>
+                                <tr><td>1</td><td>Amsvorde O15-2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>2</td><td>DOSC O15-3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
                                 <tr class="highlight">
-                                    <td>1</td><td>SV Overvecht/De Dreef JO14-2 <span class="badge-club">ONS TEAM</span></td><td>6</td><td>5</td><td>1</td><td>0</td><td>16</td><td>34</td><td>8</td>
+                                    <td>3</td><td>Hercules O15-4 <span class="badge-club">ONS TEAM</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
                                 </tr>
-                                <tr><td>2</td><td>Hercules JO14-3</td><td>6</td><td>4</td><td>1</td><td>1</td><td>13</td><td>27</td><td>13</td></tr>
-                                <tr><td>3</td><td>Sporting '70 JO14-2</td><td>6</td><td>4</td><td>1</td><td>1</td><td>13</td><td>30</td><td>20</td></tr>
-                                <tr><td>4</td><td>sv Parkhout JO14-2</td><td>6</td><td>4</td><td>0</td><td>2</td><td>12</td><td>34</td><td>22</td></tr>
-                                <tr><td>5</td><td>Saestum JO14-1</td><td>6</td><td>3</td><td>2</td><td>1</td><td>11</td><td>21</td><td>19</td></tr>
-                                <tr><td>6</td><td>Kampong JO14-3</td><td>6</td><td>3</td><td>1</td><td>2</td><td>10</td><td>18</td><td>19</td></tr>
-                                <tr><td>7</td><td>Victoria JO14-5</td><td>7</td><td>3</td><td>1</td><td>3</td><td>10</td><td>26</td><td>19</td></tr>
-                                <tr><td>8</td><td>Zwaluwen Utrecht '11 JO14-1</td><td>6</td><td>2</td><td>1</td><td>3</td><td>7</td><td>26</td><td>18</td></tr>
-                                <tr><td>9</td><td>De Meern JO14-5</td><td>6</td><td>2</td><td>0</td><td>4</td><td>6</td><td>16</td><td>30</td></tr>
-                                <tr><td>10</td><td>DVSU JO14-2</td><td>7</td><td>2</td><td>0</td><td>5</td><td>6</td><td>18</td><td>31</td></tr>
-                                <tr><td>11</td><td>PVC JO14-2</td><td>6</td><td>0</td><td>1</td><td>5</td><td>1</td><td>7</td><td>28</td></tr>
-                                <tr><td>12</td><td>VVJ JO14-1</td><td>6</td><td>0</td><td>1</td><td>5</td><td>1</td><td>9</td><td>39</td></tr>
+                                <tr><td>4</td><td>Hoogland O15-4</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>5</td><td>Jonathan O15-6</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>6</td><td>Roda '46 O15-4</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>7</td><td>Soest SO O15-3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>8</td><td>VOP O15-2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="v-button-container">
-                        <a href="https://www.voetbal.nl/team/T248692388/overzicht" target="_blank" class="v-button">Bekijk op Voetbal.nl <i data-lucide="external-link" style="width:16px;"></i></a>
+                        <a href="https://www.voetbal.nl" target="_blank" class="v-button">Bekijk op Voetbal.nl <i data-lucide="external-link" style="width:16px;"></i></a>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-header">
-                        <i data-lucide="calendar"></i> Programma Voorjaar 2026
+                        <i data-lucide="calendar"></i> Programma Najaar 2026
                     </div>
-                    <div class="match-row"><span class="m-date">DIN 31 MRT</span><span class="m-teams">SV Overvecht/De Dreef JO14-2 vs VVJ JO14-1<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">19:00</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 11 APR</span><span class="m-teams">SV Overvecht/De Dreef JO14-2 vs Hercules JO14-3<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">08:30</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 18 APR</span><span class="m-teams">Saestum JO14-1 vs SV Overvecht/De Dreef JO14-2<br><small style="color:#777;">(UIT)</small></span><span class="m-time">08:30</span></div>
-                    <div class="match-row"><span class="m-date">ZAT 9 MEI</span><span class="m-teams">Sporting '70 JO14-2 vs SV Overvecht/De Dreef JO14-2<br><small style="color:#777;">(UIT)</small></span><span class="m-time">15:00</span></div>
-                    <div class="match-row" style="border:none;"><span class="m-date">ZAT 16 MEI</span><span class="m-teams">SV Overvecht/De Dreef JO14-2 vs sv Parkhout JO14-2<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">16:15</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 31 OKT</span><span class="m-teams">Hercules O15-4 vs Hoogland O15-4<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">08:30</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 7 NOV</span><span class="m-teams">DOSC O15-3 vs Hercules O15-4<br><small style="color:#777;">(UIT)</small></span><span class="m-time">15:00</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 14 NOV</span><span class="m-teams">Hercules O15-4 vs Soest SO O15-3<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">11:00</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 21 NOV</span><span class="m-teams">Hercules O15-4 vs Jonathan O15-6<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">10:45</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 28 NOV</span><span class="m-teams">VOP O15-2 vs Hercules O15-4<br><small style="color:#777;">(UIT)</small></span><span class="m-time">13:30</span></div>
+                    <div class="match-row"><span class="m-date">ZAT 5 DEC</span><span class="m-teams">Hercules O15-4 vs Roda '46 O15-4<br><small style="color:#777;">(THUIS)</small></span><span class="m-time">11:00</span></div>
+                    <div class="match-row" style="border:none;"><span class="m-date">ZAT 12 DEC</span><span class="m-teams">Amsvorde O15-2 vs Hercules O15-4<br><small style="color:#777;">(UIT)</small></span><span class="m-time">10:30</span></div>
                 </div>
             </section>
 
@@ -315,7 +310,7 @@
                     <div class="card-header">
                         <i data-lucide="flame"></i> Topscorers
                     </div>
-                    <div class="score-row"><span>🥇 ABDULLAH</span><span>8 goals</span></div>
+                    <div class="score-row"><span>🥇 Mohammed K.</span><span>1 goal</span></div>
                     <div class="score-row"><span>🥈 SPELER NAAM</span><span>0 goals</span></div>
                     <div class="score-row" style="border:none;"><span>🥉 SPELER NAAM</span><span>0 goals</span></div>
                 </div>
@@ -328,16 +323,17 @@
                         <i data-lucide="clock"></i> Trainingsuren
                     </div>
                     <div class="training-grid">
-                        <div class="t-card"><div class="t-day">Dinsdag</div>17:15 - 18:15<br><strong>Veld 1</strong></div>
-                        <div class="t-card"><div class="t-day">Donderdag</div>17:15 - 18:15<br><strong>Veld 1</strong></div>
+                        <div class="t-card"><div class="t-day">Dinsdag</div>17:45 - 19:00</div>
+                        <div class="t-card"><div class="t-day">Vrijdag</div>18:00 - 19:15</div>
                     </div>
-                    <div style="margin: 0 30px 20px 30px; padding: 15px; background: #fff0f0; border-radius: 15px; border: 2px dashed var(--dreef-rood); text-align: center;">
-                        <strong style="color: var(--dreef-rood); text-transform: uppercase;">Belangrijk voor deze week:</strong><br>
+                    <div style="margin: 0 30px 20px 30px; padding: 15px; background: #eaf2fb; border-radius: 15px; border: 2px dashed var(--hercules-blauw); text-align: center;">
+                        <strong style="color: var(--hercules-donkerblauw); text-transform: uppercase;">Belangrijk voor deze week:</strong><br>
                         <span style="font-size: 0.9rem;">Niks speciaals deze week.</span>
                     </div>
-                    <p style="text-align:center; color:var(--dreef-rood); font-weight:900; padding-bottom:20px; text-transform:uppercase; margin:0;">Verzamelen: 15 minuten voor aanvang</p>
+                    <p style="text-align:center; color:var(--hercules-blauw); font-weight:900; padding-bottom:20px; text-transform:uppercase; margin:0;">Verzamelen: 15 minuten voor aanvang</p>
                 </div>
 
+                <!-- THUISTRAININGEN CARD -->
                 <div class="card">
                     <div class="card-header">
                         <i data-lucide="dumbbell"></i> THUIS OEFENINGEN
@@ -355,7 +351,7 @@
             </section>
 
             <footer>
-                &copy; 2026 S.V. Overvecht De Dreef | Utrecht <br>
+                &copy; 2026 USV Hercules | Utrecht <br>
                 <strong>Gemaakt door Mohammed Kaddouri</strong>
             </footer>
         </div>
@@ -372,9 +368,16 @@
             window.scrollTo(0, 0);
         }
 
-        // Iconen inladen bij opstarten
+        // Iconen & Service Worker inladen
         window.onload = function() {
             lucide.createIcons();
+
+            // AUTOMATISCHE REGISTRATIE VOOR TELEFOON APP (SERVICE WORKER)
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(() => console.log('App Service Worker succesvol actief!'))
+                    .catch((err) => console.log('SW Fout:', err));
+            }
         };
     </script>
 </body>
